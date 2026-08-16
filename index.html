@@ -77,14 +77,11 @@ header::after{content:"";position:absolute;bottom:-3px;left:0;right:0;height:6px
 .brand h1::after{content:'\2740';font-size:15px;color:var(--pink);animation:sway 3s ease-in-out .5s infinite reverse}
 @keyframes sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
 .brand .sub{font-size:11px;color:var(--ink3);letter-spacing:.16em;font-family:var(--sans)}
-.tools{display:flex;gap:7px;flex-wrap:wrap}
 .tbtn{display:inline-flex;align-items:center;gap:5px;min-height:38px;padding:0 14px;background:var(--paper);
   border:2px solid var(--line2);border-radius:14px 8px 14px 8px/8px 14px 8px 14px;
   font-size:12.5px;color:var(--ink2);cursor:pointer;transition:.2s;font-family:var(--hand);
   box-shadow:0 2px 6px rgba(107,93,82,.06)}
 .tbtn:hover{border-color:var(--blue);color:var(--blue);transform:rotate(-1.5deg) translateY(-1px);box-shadow:0 4px 12px rgba(107,93,82,.1)}
-.tbtn#btnSync{border-color:var(--blue);color:var(--blue);background:var(--blue-l)}
-.tbtn#btnSync:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
 .tbtn.danger:hover{border-color:var(--clay2);color:var(--clay2)}
 
 /* 横幅 */
@@ -315,8 +312,8 @@ section.blk{margin-bottom:18px;padding:18px}
   /* mobile: hide desktop calendar, show mini strip */
   .heat-desktop{display:none!important}
   .heat-mobile{display:block}
-  .heat-strip{display:flex;gap:3px;margin-bottom:10px}
-  .heat-strip .dot{width:100%;max-width:28px;aspect-ratio:1;border-radius:50%;background:#f0e8dc;font-size:0;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .heat-strip{display:flex;gap:2px;margin-bottom:8px;overflow:hidden}
+  .heat-strip .dot{width:9px;height:9px;min-width:0;flex:0 0 auto;border-radius:50%;background:#f0e8dc;font-size:0;display:flex;align-items:center;justify-content:center}
   .heat-strip .dot.on{background:var(--green2)}
   .heat-strip .dot.today{box-shadow:0 0 0 2px var(--gold);background:#fff8e1}
   .heat-strip .dot.today.on{background:var(--green2);box-shadow:0 0 0 2px var(--gold)}
@@ -338,9 +335,7 @@ section.blk{margin-bottom:18px;padding:18px}
 <header>
   <div class="wrap hd">
     <div class="brand"><h1>毛毛的日常小台</h1><span class="sub">DAILY DESK</span></div>
-    <div class="tools">
-      <button class="tbtn" id="btnSync">☁️ 同步</button>
-    </div>
+
   </div>
   <div class="wrap"><div class="banner" id="banner"></div></div>
 </header>
@@ -437,21 +432,7 @@ section.blk{margin-bottom:18px;padding:18px}
 
 <div class="botnav" id="botnav"></div>
 
-<!-- 云端同步弹层 -->
-<div class="modal" id="syncModal">
-  <div class="box sketch">
-    <div class="mhd">☁️ 同步手机 / 电脑数据</div>
-    <p class="muted" style="margin:0 0 10px;font-family:var(--sans)">把这份数据传到你的电脑（云端中转），另一端打开点一下就能拉取。以你最后操作的设备为准，若两边都改过请先想好方向。</p>
-    <div style="display:flex;justify-content:space-between;font-family:var(--sans);font-size:13px;padding:6px 0;border-bottom:1px dashed var(--line)"><span>本机最后更新</span><b id="syncLocalTs">—</b></div>
-    <div style="display:flex;justify-content:space-between;font-family:var(--sans);font-size:13px;padding:6px 0;border-bottom:1px dashed var(--line)"><span>云端最后更新</span><b id="syncCloudTs">—</b></div>
-    <div id="syncStat" style="font-family:var(--sans);font-size:13px;color:var(--gold);margin:10px 0">点下面按钮开始同步</div>
-    <div class="f" style="margin-top:8px;gap:10px;flex-wrap:wrap">
-      <button class="btn" id="syncUp">⬆️ 上传本机到云端</button>
-      <button class="btn" id="syncDown">⬇️ 从云端拉取</button>
-      <button class="btn ghost" onclick="syncClose()">关闭</button>
-    </div>
-  </div>
-</div>
+
 
 <!-- 待办修改弹层 -->
 <div class="modal" id="tdModal">
@@ -709,43 +690,6 @@ function importBackup(text){
   showBanner('ok','导入完成！若有问题可用自动生成的兜底副本找回。');
   switchView('home');
 }
-
-/* ===== 云端同步 ===== */
-function fmtTs(ts){ if(!ts)return '暂无'; const d=new Date(ts); const p=n=>(''+n).padStart(2,'0'); return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes()); }
-function openSync(){
-  document.getElementById('syncLocalTs').textContent=fmtTs(D.meta.lastWrite);
-  document.getElementById('syncStat').textContent='正在读取云端状态…';
-  document.getElementById('syncModal').classList.add('on');
-  fetch('/sync?_='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(o=>{
-    window.__cloudTs=(o&&o.ts)?o.ts:0;
-    document.getElementById('syncCloudTs').textContent=fmtTs(window.__cloudTs);
-    document.getElementById('syncStat').textContent='就绪，选择上传或拉取';
-  }).catch(e=>{ window.__cloudTs=0; document.getElementById('syncCloudTs').textContent='读取失败'; document.getElementById('syncStat').textContent='云端不可达，确认本机服务/穿透在运行'; });
-}
-function syncUpload(){
-  const payload={ts:Date.now(),data:{checkin:D.checkin,todo:D.todo,memo:D.memo,idea:D.idea,summary:D.summary,meta:D.meta}};
-  document.getElementById('syncStat').textContent='正在上传…';
-  fetch('/sync',{method:'POST',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(r=>r.json()).then(o=>{
-    if(o&&o.ok){ D.meta.lastWrite=payload.ts; persist('meta'); document.getElementById('syncCloudTs').textContent=fmtTs(payload.ts); document.getElementById('syncStat').textContent='✅ 已上传到云端，去另一台设备点「从云端拉取」'; }
-    else{ document.getElementById('syncStat').textContent='上传失败：服务端返回异常'; }
-  }).catch(e=>{ document.getElementById('syncStat').textContent='上传失败：云端不可达'; });
-}
-function syncDownload(){
-  document.getElementById('syncStat').textContent='正在拉取…';
-  fetch('/sync?_='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(o=>{
-    if(!o||!o.data){ document.getElementById('syncStat').textContent='云端还没有数据，请先在另一端上传'; return; }
-    const fb={};['checkin','todo','memo','idea','summary','meta'].forEach(k=>fb[k]=D[k]);
-    try{localStorage.setItem('wb_desk_fallback_'+Date.now(),JSON.stringify(fb));}catch(_){}
-    ['checkin','todo','memo','idea','summary'].forEach(k=>{ if(o.data[k]!==undefined){ D[k]=o.data[k]; persist(k); } });
-    D.meta=Object.assign(defaults('meta'),o.data.meta||{});
-    D.meta.lastWrite=o.ts||Date.now(); persist('meta');
-    document.getElementById('syncLocalTs').textContent=fmtTs(D.meta.lastWrite);
-    document.getElementById('syncStat').textContent='✅ 已拉取到本机，刷新各模块';
-    renderHome();renderCheckin();renderTodo();renderMemo();renderIdea();renderSummary();
-    switchView('home');
-  }).catch(e=>{ document.getElementById('syncStat').textContent='拉取失败：云端不可达'; });
-}
-function syncClose(){ document.getElementById('syncModal').classList.remove('on'); }
 
 /* ===== 首页 ===== */
 function renderHome(){
@@ -1081,9 +1025,6 @@ async function syncSummary(){
 
 /* ===== 事件绑定 ===== */
 function bind(){
-  document.getElementById('btnSync').onclick=openSync;
-  document.getElementById('syncUp').onclick=syncUpload;
-  document.getElementById('syncDown').onclick=syncDownload;
 
   fillCatSelect(document.getElementById('tdCat'),'工作');
   fillCatSelect(document.getElementById('tdmCat'),'工作');
