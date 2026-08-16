@@ -83,6 +83,8 @@ header::after{content:"";position:absolute;bottom:-3px;left:0;right:0;height:6px
   font-size:12.5px;color:var(--ink2);cursor:pointer;transition:.2s;font-family:var(--hand);
   box-shadow:0 2px 6px rgba(107,93,82,.06)}
 .tbtn:hover{border-color:var(--blue);color:var(--blue);transform:rotate(-1.5deg) translateY(-1px);box-shadow:0 4px 12px rgba(107,93,82,.1)}
+.tbtn#btnSync{border-color:var(--blue);color:var(--blue);background:var(--blue-l)}
+.tbtn#btnSync:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
 .tbtn.danger:hover{border-color:var(--clay2);color:var(--clay2)}
 
 /* 横幅 */
@@ -178,16 +180,20 @@ section.blk{margin-bottom:18px;padding:18px}
 .check-btn.on{background:linear-gradient(135deg, var(--green2), #6b9177);color:#fff;box-shadow:0 2px 8px rgba(122,163,137,.3)}
 .check-btn:active{transform:scale(.94)}
 .check-btn:hover:not(.on){border-color:var(--green);box-shadow:0 3px 10px rgba(122,163,137,.25)}
-.heat-wrap{margin-top:6px;padding:14px;overflow-x:auto}
+.heat-wrap{margin-top:6px;padding:14px}
 .heat-legend{font-family:var(--hand);font-size:13px;color:var(--ink3);margin-bottom:10px}
-.heat-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.heat-name{width:96px;flex:none;font-size:12px;color:var(--ink2);font-family:var(--hand);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.heat-cells{display:grid;grid-template-columns:repeat(30,1fr);gap:3px;flex:1;min-width:240px}
-.hcell{aspect-ratio:1;border-radius:4px;background:#f0e8dc;display:block}
-.hcell.on{background:var(--green2)}
-.heat-foot{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:12px;color:var(--ink3);font-family:var(--hand)}
+.cal-head{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:5px;font-size:11px;color:var(--ink3);text-align:center;font-family:var(--hand)}
+.heat-cal-row{margin-bottom:12px}
+.heat-name2{font-size:12px;color:var(--ink2);font-family:var(--hand);margin-bottom:5px}
+.heat-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-cell{aspect-ratio:1;border-radius:6px;background:#f0e8dc;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink3)}
+.cal-cell.on{background:var(--green2);color:#fff}
+.cal-cell.empty{background:transparent}
+.cal-cell.today{box-shadow:0 0 0 2px var(--gold)}
+.heat-foot{display:flex;align-items:center;gap:6px;margin-top:4px;font-size:12px;color:var(--ink3);font-family:var(--hand)}
 .heat-foot i{width:11px;height:11px;border-radius:3px;display:inline-block;background:#f0e8dc}
 .heat-foot i.on{background:var(--green2)}
+.heat-foot i.today{background:var(--gold)}
 
 /* 待办/列表 */
 .list{list-style:none;margin:0;padding:0}
@@ -320,6 +326,7 @@ section.blk{margin-bottom:18px;padding:18px}
   <div class="wrap hd">
     <div class="brand"><h1>毛毛的日常小台</h1><span class="sub">DAILY DESK</span></div>
     <div class="tools">
+      <button class="tbtn" id="btnSync">☁️ 同步</button>
     </div>
   </div>
   <div class="wrap"><div class="banner" id="banner"></div></div>
@@ -344,13 +351,11 @@ section.blk{margin-bottom:18px;padding:18px}
     <section class="blk sketch">
       <div class="blkhd"><h2><svg class="doodle" width="18" height="18" viewBox="0 0 24 24" stroke="var(--doodle)" fill="none" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>每日汇总</h2>
         <div class="chips">
-          <button class="chip" id="sumImportFile">导入文件</button>
-          <button class="chip" id="sumImportPaste">粘贴导入</button>
           <button class="chip sync" id="btnSyncSummary">🔄 同步今日汇总</button>
           <span class="sync-status" id="syncStatus"></span>
         </div>
       </div>
-      <select class="arch-sel sketch" id="sumArchive" style="display:none"></select>
+      <select class="arch-sel sketch" id="sumArchive"><option value="">加载中…</option></select>
       <div id="sumBody"></div>
     </section>
   </section>
@@ -419,15 +424,18 @@ section.blk{margin-bottom:18px;padding:18px}
 
 <div class="botnav" id="botnav"></div>
 
-<!-- 粘贴导入弹层 -->
-<div class="modal" id="pasteModal">
+<!-- 云端同步弹层 -->
+<div class="modal" id="syncModal">
   <div class="box sketch">
-    <div class="mhd">粘贴每日汇总 JSON</div>
-    <p class="muted" style="margin:0 0 10px;font-family:var(--sans)">把生成好的 <code>每日汇总.json</code> 内容粘进来，点导入即可。原数据不会丢失。</p>
-    <textarea id="pasteArea" placeholder='{"date":"2026年8月14日 星期五","news":[...]}'></textarea>
-    <div class="f" style="margin-top:12px;justify-content:flex-end">
-      <button class="btn ghost" id="pasteCancel">取消</button>
-      <button class="btn" id="pasteGo">导入</button>
+    <div class="mhd">☁️ 同步手机 / 电脑数据</div>
+    <p class="muted" style="margin:0 0 10px;font-family:var(--sans)">把这份数据传到你的电脑（云端中转），另一端打开点一下就能拉取。以你最后操作的设备为准，若两边都改过请先想好方向。</p>
+    <div style="display:flex;justify-content:space-between;font-family:var(--sans);font-size:13px;padding:6px 0;border-bottom:1px dashed var(--line)"><span>本机最后更新</span><b id="syncLocalTs">—</b></div>
+    <div style="display:flex;justify-content:space-between;font-family:var(--sans);font-size:13px;padding:6px 0;border-bottom:1px dashed var(--line)"><span>云端最后更新</span><b id="syncCloudTs">—</b></div>
+    <div id="syncStat" style="font-family:var(--sans);font-size:13px;color:var(--gold);margin:10px 0">点下面按钮开始同步</div>
+    <div class="f" style="margin-top:8px;gap:10px;flex-wrap:wrap">
+      <button class="btn" id="syncUp">⬆️ 上传本机到云端</button>
+      <button class="btn" id="syncDown">⬇️ 从云端拉取</button>
+      <button class="btn ghost" onclick="syncClose()">关闭</button>
     </div>
   </div>
 </div>
@@ -474,7 +482,6 @@ section.blk{margin-bottom:18px;padding:18px}
 </div>
 
 
-<input type="file" id="sumFile" accept=".json,application/json" style="display:none">
 
 <script>
 "use strict";
@@ -690,6 +697,42 @@ function importBackup(text){
   switchView('home');
 }
 
+/* ===== 云端同步 ===== */
+function fmtTs(ts){ if(!ts)return '暂无'; const d=new Date(ts); const p=n=>(''+n).padStart(2,'0'); return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes()); }
+function openSync(){
+  document.getElementById('syncLocalTs').textContent=fmtTs(D.meta.lastWrite);
+  document.getElementById('syncStat').textContent='正在读取云端状态…';
+  document.getElementById('syncModal').classList.add('on');
+  fetch('/sync?_='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(o=>{
+    window.__cloudTs=(o&&o.ts)?o.ts:0;
+    document.getElementById('syncCloudTs').textContent=fmtTs(window.__cloudTs);
+    document.getElementById('syncStat').textContent='就绪，选择上传或拉取';
+  }).catch(e=>{ window.__cloudTs=0; document.getElementById('syncCloudTs').textContent='读取失败'; document.getElementById('syncStat').textContent='云端不可达，确认本机服务/穿透在运行'; });
+}
+function syncUpload(){
+  const payload={ts:Date.now(),data:{checkin:D.checkin,todo:D.todo,memo:D.memo,idea:D.idea,summary:D.summary,meta:D.meta}};
+  document.getElementById('syncStat').textContent='正在上传…';
+  fetch('/sync',{method:'POST',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(r=>r.json()).then(o=>{
+    if(o&&o.ok){ D.meta.lastWrite=payload.ts; persist('meta'); document.getElementById('syncCloudTs').textContent=fmtTs(payload.ts); document.getElementById('syncStat').textContent='✅ 已上传到云端，去另一台设备点「从云端拉取」'; }
+    else{ document.getElementById('syncStat').textContent='上传失败：服务端返回异常'; }
+  }).catch(e=>{ document.getElementById('syncStat').textContent='上传失败：云端不可达'; });
+}
+function syncDownload(){
+  document.getElementById('syncStat').textContent='正在拉取…';
+  fetch('/sync?_='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(o=>{
+    if(!o||!o.data){ document.getElementById('syncStat').textContent='云端还没有数据，请先在另一端上传'; return; }
+    const fb={};['checkin','todo','memo','idea','summary','meta'].forEach(k=>fb[k]=D[k]);
+    try{localStorage.setItem('wb_desk_fallback_'+Date.now(),JSON.stringify(fb));}catch(_){}
+    ['checkin','todo','memo','idea','summary'].forEach(k=>{ if(o.data[k]!==undefined){ D[k]=o.data[k]; persist(k); } });
+    D.meta=Object.assign(defaults('meta'),o.data.meta||{});
+    D.meta.lastWrite=o.ts||Date.now(); persist('meta');
+    document.getElementById('syncLocalTs').textContent=fmtTs(D.meta.lastWrite);
+    document.getElementById('syncStat').textContent='✅ 已拉取到本机，刷新各模块';
+    renderHome();renderCheckin();renderTodo();renderMemo();renderIdea();renderSummary();
+    switchView('home');
+  }).catch(e=>{ document.getElementById('syncStat').textContent='拉取失败：云端不可达'; });
+}
+function syncClose(){ document.getElementById('syncModal').classList.remove('on'); }
 
 /* ===== 首页 ===== */
 function renderHome(){
@@ -741,13 +784,22 @@ function renderCheckin(){
       +'<button class="check-btn '+(on?'on':'')+'" onclick="ckToggle(\''+h.id+'\')">'+(on?'✔ 已打':'打钩')+'</button>'
       +'<button class="ico-btn" onclick="ckDel(\''+h.id+'\')" title="删除">✕</button></div>';
   }).join('');
-  let grid='<div class="heat-wrap sketch"><div class="heat-legend">近 30 天打卡痕迹</div>';
+  const wk=['一','二','三','四','五','六','日'];
+  const first=new Date(days[0].replace(/-/g,'/'));
+  const pad=(first.getDay()+6)%7;
+  let grid='<div class="heat-wrap sketch"><div class="heat-legend">📅 近 30 天打卡日历</div><div class="cal-head">'+wk.map(w=>'<span>'+w+'</span>').join('')+'</div>';
   habits.forEach(h=>{
-    grid+='<div class="heat-row"><div class="heat-name">'+esc(h.name)+'</div><div class="heat-cells">';
-    days.forEach(d=>{const v=h.records[d];grid+='<i class="hcell '+(v?'on':'')+'" title="'+d+(v?':已打卡':'')+'"></i>';});
-    grid+='</div></div>';
+    let cells='';
+    for(let i=0;i<pad;i++)cells+='<i class="cal-cell empty"></i>';
+    days.forEach(d=>{
+      const v=!!h.records[d];
+      const dn=parseInt(d.slice(8,10),10);
+      const isToday=(d===todayKey());
+      cells+='<i class="cal-cell'+(v?' on':'')+(isToday?' today':'')+'">'+(v?'✔':dn)+'</i>';
+    });
+    grid+='<div class="heat-cal-row"><div class="heat-name2">'+esc(h.name)+'</div><div class="heat-cal">'+cells+'</div></div>';
   });
-  grid+='<div class="heat-foot"><i></i> 未打卡 <i class="on"></i> 已打卡 · 横轴为最近 30 天</div></div>';
+  grid+='<div class="heat-foot"><i></i> 未打卡 <i class="on"></i> 已打卡 <i class="today"></i> 今天</div></div>';
   wrap.innerHTML=rows+grid;
 }
 function ckAdd(){
@@ -886,18 +938,64 @@ function idCloseEdit(){idEditId=null;document.getElementById('idModal').classLis
 /* ===== 每日汇总 ===== */
 function renderSummary(){
   const sel=document.getElementById('sumArchive');
-  const arc=D.summary.archive;
-  if(arc.length){
-    sel.style.display='block';
-    sel.innerHTML='<option value="current">最新：'+(D.summary.current?D.summary.current.date:'—')+'</option>'
-      +arc.map((a,i)=>'<option value="'+i+'">'+(a.date||('归档'+(i+1)))+'</option>').join('');
-  }else sel.style.display='none';
-  const which=(!sel.value||sel.value==='current')?'current':sel.value;
-  const data=which==='current'?D.summary.current:(arc[parseInt(which)]||null);
-  const body=document.getElementById('sumBody');
-  if(!data){body.innerHTML='<div class="empty">还没有汇总。点右上「导入文件」或「粘贴导入」，把生成的 <code>每日汇总.json</code> 放进来即可 📥</div>';return;}
-  body.innerHTML=sumHTML(data);
+  // 构建最近7天日期选项
+  const opts=['<option value="today">📅 最新汇总</option>'];
+  const wk=['日','一','二','三','四','五','六'];
+  for(let i=1;i<=7;i++){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const ds=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    const label='📅 '+d.getMonth()+1+'/'+d.getDate()+' 周'+wk[d.getDay()];
+    opts.push('<option value="'+ds+'">'+label+'</option>');
+  }
+  sel.innerHTML=opts.join('');
+  // 恢复之前选中的值（如果有）
+  if(D.summary._lastSel&&Array.from(sel.options).some(o=>o.value===D.summary._lastSel))sel.value=D.summary._lastSel;
+  loadSummaryForDate(sel.value);
 }
+async function loadSummaryForDate(dateVal){
+  const body=document.getElementById('sumBody');
+  if(!dateVal){dateVal='today';}
+  // today: 用 localStorage 的 current 或线上 summary.json
+  if(dateVal==='today'){
+    const data=D.summary.current;
+    if(data){body.innerHTML=sumHTML(data);return;}
+    // 没有 current 就从线上拉
+    body.innerHTML='<div class="empty">正在拉取最新汇总… ⏳</div>';
+    try{
+      const res=await fetch('summary.json?_='+Date.now(),{cache:'no-store'});
+      if(!res.ok)throw new Error('HTTP '+res.status);
+      const o=JSON.parse(await res.text());
+      D.summary.current=o;persist('summary');
+      body.innerHTML=sumHTML(o);
+    }catch(e){
+      body.innerHTML='<div class="empty">拉取失败：'+esc(e.message)+'<br><small>可点「同步今日汇总」重试</small></div>';
+    }
+    return;
+  }
+  // 历史日期：先查 localStorage 缓存
+  const cacheKey='sum_hist_'+dateVal;
+  const cached=localStorage.getItem(cacheKey);
+  if(cached){try{const data=JSON.parse(cached);body.innerHTML=sumHTML(data);return;}catch(e){}}
+  // 缓存没有就拉线上 summaries/YYYY-MM-DD.json
+  body.innerHTML='<div class="empty">正在拉取 '+dateVal+' 的汇总… ⏳</div>';
+  try{
+    const res=await fetch('summaries/'+dateVal+'.json?_='+Date.now(),{cache:'no-store'});
+    if(res.status===404){body.innerHTML='<div class="empty">'+dateVal+' 暂无汇总数据<br><small>那天可能还没上线或未生成</small></div>';return;}
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const o=JSON.parse(await res.text());
+    // 缓存到 localStorage
+    localStorage.setItem(cacheKey, JSON.stringify(o));
+    body.innerHTML=sumHTML(o);
+  }catch(e){
+    body.innerHTML='<div class="empty">拉取失败：'+esc(e.message)+'</div>';
+  }
+}
+// 记住用户选了哪个日期
+document.getElementById('sumArchive').addEventListener('change', function(){
+  D.summary._lastSel=this.value;
+  persist('summary');
+  loadSummaryForDate(this.value);
+});
 function sumHTML(d){
   const pill=t=>t==='national'?'<span class="pill national">国家</span>':t==='foshan'?'<span class="pill foshan">佛山</span>':'<span class="pill life">民生</span>';
   let h='<div class="sum-h">'+esc(d.date||'')+'</div><div class="sum-d">每日汇总 · 由 WorkBuddy 生成</div>';
@@ -948,6 +1046,8 @@ async function syncSummary(){
     const text=await res.text();
     importSummaryText(text);
     st.textContent='✅ 已同步 '+new Date().toLocaleString('zh-CN');
+  D.summary._lastSel='today';persist('summary');
+  document.getElementById('sumArchive').value='today';
   }catch(e){
     st.textContent='⚠️ 同步失败：'+((e&&e.message)||e)+'（可改用「导入文件」）';
   }
@@ -955,6 +1055,9 @@ async function syncSummary(){
 
 /* ===== 事件绑定 ===== */
 function bind(){
+  document.getElementById('btnSync').onclick=openSync;
+  document.getElementById('syncUp').onclick=syncUpload;
+  document.getElementById('syncDown').onclick=syncDownload;
 
   fillCatSelect(document.getElementById('tdCat'),'工作');
   fillCatSelect(document.getElementById('tdmCat'),'工作');
@@ -967,12 +1070,6 @@ function bind(){
   document.getElementById('idAdd').onclick=idAdd;
   document.getElementById('idSearch').oninput=e=>{idState.q=e.target.value;renderIdea();};
 
-  document.getElementById('sumImportFile').onclick=()=>document.getElementById('sumFile').click();
-  document.getElementById('sumFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();
-    r.onload=()=>importSummaryText(r.result);r.readAsText(f);e.target.value='';};
-  document.getElementById('sumImportPaste').onclick=()=>{document.getElementById('pasteModal').classList.add('on');};
-  document.getElementById('pasteCancel').onclick=()=>document.getElementById('pasteModal').classList.remove('on');
-  document.getElementById('pasteGo').onclick=()=>{const t=document.getElementById('pasteArea').value.trim();if(!t){showBanner('warn','先粘贴内容');return;}importSummaryText(t);document.getElementById('pasteModal').classList.remove('on');document.getElementById('pasteArea').value='';};
   document.getElementById('sumArchive').onchange=renderSummary;
   document.getElementById('btnSyncSummary').onclick=syncSummary;
 }
