@@ -167,7 +167,7 @@ section.blk{margin-bottom:18px;padding:18px}
 .dot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--green)}
 
 /* 打卡 */
-.habit-row{display:flex;align-items:center;gap:10px;padding:12px 14px;margin-bottom:11px}
+.habit-row{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:12px 14px;margin-bottom:11px}
 .habit-row .hr-info{flex:1;min-width:0}
 .habit-row .hn{font-size:15px;font-weight:600;font-family:var(--hand)}
 .habit-row .hm{font-size:12px;color:var(--ink3);font-family:var(--hand);margin-top:2px}
@@ -177,18 +177,16 @@ section.blk{margin-bottom:18px;padding:18px}
 .check-btn.on{background:linear-gradient(135deg, var(--green2), #6b9177);color:#fff;box-shadow:0 2px 8px rgba(122,163,137,.3)}
 .check-btn:active{transform:scale(.94)}
 .check-btn:hover:not(.on){border-color:var(--green);box-shadow:0 3px 10px rgba(122,163,137,.25)}
-.heat-wrap{margin-top:6px;padding:12px 10px}
-.heat-legend{font-family:var(--hand);font-size:13px;color:var(--ink3);margin-bottom:10px}
-.heat-cal-row{margin-bottom:10px}
-.heat-name2{font-size:12px;color:var(--ink2);font-family:var(--hand);margin-bottom:5px}
-.heat-grid{display:grid;grid-template-columns:repeat(30,1fr);gap:3px}
-.hcell{aspect-ratio:1;border-radius:5px;background:#f0e8dc;display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--ink3)}
-.hcell.on{background:var(--green2);color:#fff}
-.hcell.today{box-shadow:0 0 0 2px var(--gold)}
-.heat-foot{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12px;color:var(--ink3);font-family:var(--hand)}
-.heat-foot i{width:11px;height:11px;border-radius:3px;display:inline-block;background:#f0e8dc}
-.heat-foot i.on{background:var(--green2)}
-.heat-foot i.today{background:var(--gold)}
+/* 打卡档案（紧凑·移动端友好，绝不横向溢出） */
+.ck-foot{flex:1 1 100%;margin-top:10px;padding-top:10px;border-top:1.5px dashed var(--line)}
+.ck-7{display:flex;align-items:center;gap:7px}
+.ck-7 .lbl{font-size:12px;color:var(--ink3);font-family:var(--hand);flex:none}
+.ck-dots{flex:1;display:flex;gap:4px;min-width:0}
+.ck-dot{flex:1 1 0;min-width:0;height:15px;border-radius:5px;background:#f0e8dc}
+.ck-dot.on{background:var(--green2)}
+.ck-dot.today{box-shadow:0 0 0 2px var(--gold)}
+.ck-stats{font-size:12px;color:var(--ink3);font-family:var(--hand);margin-top:8px;display:flex;gap:14px;flex-wrap:wrap}
+.ck-stats b{color:var(--green2);font-family:var(--sans);font-weight:600}
 .word-ex-cn{font-size:13px;color:var(--ink2);margin:3px 0 8px;padding-left:18px;font-family:var(--hand)}
 
 /* 待办/列表 */
@@ -714,31 +712,35 @@ function habitStreak(x){
   }
   return s;
 }
+function ckMonthDays(h){const ym=todayKey().slice(0,7);return Object.keys(h.records).filter(d=>d.slice(0,7)===ym).length;}
+function ckLastN(h,n){return lastNDays(n).filter(d=>h.records[d]).length;}
 function renderCheckin(){
   const habits=D.checkin.habits;
   const wrap=document.getElementById('ckList');
   if(!habits.length){wrap.innerHTML='<div class="empty">还没有习惯，上面加一个开始打卡吧 🌱</div>';return;}
-  const days=lastNDays(30);
+  const days7=lastNDays(7);
   const rows=habits.map(h=>{
     const on=!!h.records[todayKey()];
-    return '<div class="habit-row sketch">'
-      +'<div class="hr-info"><div class="hn">'+esc(h.name)+'</div>'
-      +'<div class="hm">连续 '+habitStreak(h)+' 天'+(on?' · 今天已 ✔':'')+'</div></div>'
-      +'<button class="check-btn '+(on?'on':'')+'" onclick="ckToggle(\''+h.id+'\')">'+(on?'✔ 已打':'打钩')+'</button>'
-      +'<button class="ico-btn" onclick="ckDel(\''+h.id+'\')" title="删除">✕</button></div>';
-  }).join('');
-  let grid='<div class="heat-wrap sketch"><div class="heat-legend">📅 近 30 天打卡痕迹（左旧 → 右新，最右为今天）</div>';
-  habits.forEach(h=>{
-    let cells='';
-    days.forEach(d=>{
+    const streak=habitStreak(h);
+    const month=ckMonthDays(h);
+    const last30=ckLastN(h,30);
+    const total=Object.keys(h.records).length;
+    const dots=days7.map(d=>{
       const v=!!h.records[d];
       const isToday=(d===todayKey());
-      cells+='<i class="hcell'+(v?' on':'')+(isToday?' today':'')+'">'+(v?'✔':'')+'</i>';
-    });
-    grid+='<div class="heat-cal-row"><div class="heat-name2">'+esc(h.name)+'</div><div class="heat-grid">'+cells+'</div></div>';
-  });
-  grid+='<div class="heat-foot"><i></i> 未打卡 <i class="on"></i> 已打卡 <i class="today"></i> 今天</div></div>';
-  wrap.innerHTML=rows+grid;
+      return '<i class="ck-dot'+(v?' on':'')+(isToday?' today':'')+'"></i>';
+    }).join('');
+    return '<div class="habit-row sketch">'
+      +'<div class="hr-info"><div class="hn">'+esc(h.name)+'</div>'
+      +'<div class="hm">连续 '+streak+' 天'+(on?' · 今天已 ✔':'')+'</div></div>'
+      +'<button class="check-btn '+(on?'on':'')+'" onclick="ckToggle(\''+h.id+'\')">'+(on?'✔ 已打':'打钩')+'</button>'
+      +'<button class="ico-btn" onclick="ckDel(\''+h.id+'\')" title="删除">✕</button>'
+      +'<div class="ck-foot">'
+        +'<div class="ck-7"><span class="lbl">近7天</span><div class="ck-dots">'+dots+'</div></div>'
+        +'<div class="ck-stats"><span>本月 <b>'+month+'</b> 天</span><span>近30天 <b>'+last30+'</b> 天</span><span>累计 <b>'+total+'</b> 天</span></div>'
+      +'</div></div>';
+  }).join('');
+  wrap.innerHTML=rows;
 }
 function ckAdd(){
   const name=document.getElementById('ckName').value.trim();
