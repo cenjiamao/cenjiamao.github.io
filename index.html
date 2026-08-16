@@ -177,24 +177,19 @@ section.blk{margin-bottom:18px;padding:18px}
 .check-btn.on{background:linear-gradient(135deg, var(--green2), #6b9177);color:#fff;box-shadow:0 2px 8px rgba(122,163,137,.3)}
 .check-btn:active{transform:scale(.94)}
 .check-btn:hover:not(.on){border-color:var(--green);box-shadow:0 3px 10px rgba(122,163,137,.25)}
-.heat-wrap{margin-top:6px;padding:14px}
+.heat-wrap{margin-top:6px;padding:12px 10px}
 .heat-legend{font-family:var(--hand);font-size:13px;color:var(--ink3);margin-bottom:10px}
-.cal-head{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:5px;font-size:11px;color:var(--ink3);text-align:center;font-family:var(--hand)}
-.heat-cal-row{margin-bottom:12px}
+.heat-cal-row{margin-bottom:10px}
 .heat-name2{font-size:12px;color:var(--ink2);font-family:var(--hand);margin-bottom:5px}
-.heat-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-.cal-cell{aspect-ratio:1;border-radius:6px;background:#f0e8dc;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink3)}
-.cal-cell.on{background:var(--green2);color:#fff}
-.cal-cell.empty{background:transparent}
-.cal-cell.today{box-shadow:0 0 0 2px var(--gold)}
-.heat-foot{display:flex;align-items:center;gap:6px;margin-top:4px;font-size:12px;color:var(--ink3);font-family:var(--hand)}
+.heat-grid{display:grid;grid-template-columns:repeat(30,1fr);gap:3px}
+.hcell{aspect-ratio:1;border-radius:5px;background:#f0e8dc;display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--ink3)}
+.hcell.on{background:var(--green2);color:#fff}
+.hcell.today{box-shadow:0 0 0 2px var(--gold)}
+.heat-foot{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12px;color:var(--ink3);font-family:var(--hand)}
 .heat-foot i{width:11px;height:11px;border-radius:3px;display:inline-block;background:#f0e8dc}
 .heat-foot i.on{background:var(--green2)}
 .heat-foot i.today{background:var(--gold)}
-
-/* responsive heatmap containers */
-.heat-desktop{display:block}
-.heat-mobile{display:none}
+.word-ex-cn{font-size:13px;color:var(--ink2);margin:3px 0 8px;padding-left:18px;font-family:var(--hand)}
 
 /* 待办/列表 */
 .list{list-style:none;margin:0;padding:0}
@@ -309,15 +304,6 @@ section.blk{margin-bottom:18px;padding:18px}
 @media(max-width:600px){
   body::before,body::after{opacity:.5}
   .floating-deco{display:none}
-  /* mobile: hide desktop calendar, show mini strip */
-  .heat-desktop{display:none!important}
-  .heat-mobile{display:block}
-  .heat-strip{display:flex;gap:2px;margin-bottom:8px;overflow:hidden}
-  .heat-strip .dot{width:9px;height:9px;min-width:0;flex:0 0 auto;border-radius:50%;background:#f0e8dc;font-size:0;display:flex;align-items:center;justify-content:center}
-  .heat-strip .dot.on{background:var(--green2)}
-  .heat-strip .dot.today{box-shadow:0 0 0 2px var(--gold);background:#fff8e1}
-  .heat-strip .dot.today.on{background:var(--green2);box-shadow:0 0 0 2px var(--gold)}
-  .heat-strip .dot.empty{background:transparent}
 }
 </style>
 </head>
@@ -548,11 +534,11 @@ function DEMO_SUMMARY(){
     ],
     aiTrend:'模型轻量化与本地化成为主线，端侧推理进一步降低使用门槛；内容创作者可重点关注「低门槛生图/视频」类工具的实际落地。',
     words:[
-      {en:'negotiate',phonetic:'/nɪˈɡəʊʃieɪt/',pos:'v.',cn:'谈判；协商',tip:'职场沟通：与客户谈价格是日常。',example:'We need to negotiate the price with the client. 👉 我们需要和客户协商价格。',scene:'周五🎒休闲'},
-      {en:'itinerary',phonetic:'/aɪˈtɪnərəri/',pos:'n.',cn:'行程；路线',tip:'差旅出行：出发前先定好 itinerary。',example:'Send me the itinerary before Friday. 👉 周五前把行程发我。',scene:'周五🎒休闲'},
-      {en:'grocery',phonetic:'/ˈɡrəʊsəri/',pos:'n.',cn:'食品杂货',tip:'生活日常：周末去 grocery 采购。',example:'I bought groceries for the week. 👉 我买了一周的食品。',scene:'周五🎒休闲'},
-      {en:'forward',phonetic:'/ˈfɔːwəd/',pos:'v.',cn:'转发；发送',tip:'邮件写作：forward 邮件给相关人。',example:'Please forward this to the team. 👉 请把这个转发给团队。',scene:'周五🎒休闲'},
-      {en:'recipe',phonetic:'/ˈresəpi/',pos:'n.',cn:'食谱；配方',tip:'美食兴趣：收藏一道 recipe。',example:'This recipe is easy to follow. 👉 这个食谱很容易照着做。',scene:'周五🎒休闲'}
+      {en:'negotiate',phonetic:'/nɪˈɡəʊʃieɪt/',pos:'v.',cn:'谈判；协商',tip:'职场沟通：与客户谈价格是日常。',example:'We need to negotiate the price with the client.',exampleCn:'我们需要和客户协商价格。',scene:'周五🎒休闲'},
+      {en:'itinerary',phonetic:'/aɪˈtɪnərəri/',pos:'n.',cn:'行程；路线',tip:'差旅出行：出发前先定好 itinerary。',example:'Send me the itinerary before Friday.',exampleCn:'周五前把行程发我。',scene:'周五🎒休闲'},
+      {en:'grocery',phonetic:'/ˈɡrəʊsəri/',pos:'n.',cn:'食品杂货',tip:'生活日常：周末去 grocery 采购。',example:'I bought groceries for the week.',exampleCn:'我买了一周的食品。',scene:'周五🎒休闲'},
+      {en:'forward',phonetic:'/ˈfɔːwəd/',pos:'v.',cn:'转发；发送',tip:'邮件写作：forward 邮件给相关人。',example:'Please forward this to the team.',exampleCn:'请把这个转发给团队。',scene:'周五🎒休闲'},
+      {en:'recipe',phonetic:'/ˈresəpi/',pos:'n.',cn:'食谱；配方',tip:'美食兴趣：收藏一道 recipe。',example:'This recipe is easy to follow.',exampleCn:'这个食谱很容易照着做。',scene:'周五🎒休闲'}
     ],
     qa:{q:'为什么广东人爱喝凉茶？',a:'凉茶源自岭南地区应对湿热气候的民间智慧，以夏枯草、金银花、鸡骨草等中草药煎煮而成，讲究「清热解毒、生津止渴」。它并非普通茶饮，而是一种功能性饮品，反映了广府饮食「药食同源」的观念。旧时街头凉茶铺常挂「神农」画像，寓意尝百草、济世人；如今凉茶已列入国家级非遗，但市面上的含糖凉茶饮料与其本意相去甚远，真要下火还得喝无糖的苦的那碗。'},
     hr:[
@@ -741,36 +727,18 @@ function renderCheckin(){
       +'<button class="check-btn '+(on?'on':'')+'" onclick="ckToggle(\''+h.id+'\')">'+(on?'✔ 已打':'打钩')+'</button>'
       +'<button class="ico-btn" onclick="ckDel(\''+h.id+'\')" title="删除">✕</button></div>';
   }).join('');
-  const wk=['一','二','三','四','五','六','日'];
-  const first=new Date(days[0].replace(/-/g,'/'));
-  const pad=(first.getDay()+6)%7;
-  // Desktop: 7-column calendar
-let grid='<div class="heat-wrap sketch heat-desktop"><div class="heat-legend">📅 近 30 天打卡日历</div><div class="cal-head">'+wk.map(w=>'<span>'+w+'</span>').join('')+'</div>';
+  let grid='<div class="heat-wrap sketch"><div class="heat-legend">📅 近 30 天打卡痕迹（左旧 → 右新，最右为今天）</div>';
   habits.forEach(h=>{
     let cells='';
-    for(let i=0;i<pad;i++)cells+='<i class="cal-cell empty"></i>';
     days.forEach(d=>{
       const v=!!h.records[d];
-      const dn=parseInt(d.slice(8,10),10);
       const isToday=(d===todayKey());
-      cells+='<i class="cal-cell'+(v?' on':'')+(isToday?' today':'')+'">'+(v?'✔':dn)+'</i>';
+      cells+='<i class="hcell'+(v?' on':'')+(isToday?' today':'')+'">'+(v?'✔':'')+'</i>';
     });
-    grid+='<div class="heat-cal-row"><div class="heat-name2">'+esc(h.name)+'</div><div class="heat-cal">'+cells+'</div></div>';
+    grid+='<div class="heat-cal-row"><div class="heat-name2">'+esc(h.name)+'</div><div class="heat-grid">'+cells+'</div></div>';
   });
   grid+='<div class="heat-foot"><i></i> 未打卡 <i class="on"></i> 已打卡 <i class="today"></i> 今天</div></div>';
-  // Mobile: compact dot strip (one row per habit)
-  let mgrid='<div class="heat-wrap sketch heat-mobile"><div class="heat-legend">📅 近 30 天</div>';
-  habits.forEach(h=>{
-    let dots='';
-    days.forEach(d=>{
-      const v=!!h.records[d];
-      const isToday=(d===todayKey());
-      dots+='<i class="dot'+(v?' on':'')+(isToday?' today':'')+(v?'">✔':'"></i>');
-    });
-    mgrid+='<div style="margin-bottom:8px"><div class="heat-name2">'+esc(h.name)+'</div><div class="heat-strip">'+dots+'</div></div>';
-  });
-  mgrid+='<div class="heat-foot" style="font-size:11px"><i></i> 未打 <i class="on"></i> 已打 <i class="today"></i> 今</div></div>';
-  wrap.innerHTML=rows+grid+mgrid;
+  wrap.innerHTML=rows+grid;
 }
 function ckAdd(){
   const name=document.getElementById('ckName').value.trim();
@@ -982,7 +950,7 @@ function sumHTML(d){
       +d.words.map(w=>'<div class="word-card"><div class="word-main"><span class="word-en">'+esc(w.en)+'</span><span class="word-ph">'+esc(w.phonetic||'')+'</span><span class="word-pos">'+esc(w.pos||'')+'</span></div>'
         +'<div class="word-cn">'+esc(w.cn||'')+(w.scene?' · '+esc(w.scene):'')+'</div>'
         +'<div class="word-tip">💡 '+esc(w.tip||'')+'</div>'
-        +'<div class="word-ex">📝 '+esc(w.example||'')+'</div></div>').join('')+'</section>';
+        +'<div class="word-ex">📝 '+esc(w.example||'')+'</div>'+(w.exampleCn?'<div class="word-ex-cn">👉 '+esc(w.exampleCn)+'</div>':'')+'</div>').join('')+'</section>';
   }
   if(d.qa){
     h+='<section class="blk sketch"><div class="blkhd"><h2>冷知识</h2></div><div class="qa-q">❓ '+esc(d.qa.q)+'</div><div class="qa-a">'+esc(d.qa.a)+'</div></section>';
