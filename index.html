@@ -195,6 +195,10 @@ section.blk{margin-bottom:18px;padding:18px}
 .heat-foot i.on{background:var(--green2)}
 .heat-foot i.today{background:var(--gold)}
 
+/* responsive heatmap containers */
+.heat-desktop{display:block}
+.heat-mobile{display:none}
+
 /* 待办/列表 */
 .list{list-style:none;margin:0;padding:0}
 .list li{display:flex;align-items:flex-start;gap:11px;padding:13px 2px;border-bottom:1.5px dashed var(--line)}
@@ -308,6 +312,15 @@ section.blk{margin-bottom:18px;padding:18px}
 @media(max-width:600px){
   body::before,body::after{opacity:.5}
   .floating-deco{display:none}
+  /* mobile: hide desktop calendar, show mini strip */
+  .heat-desktop{display:none!important}
+  .heat-mobile{display:block}
+  .heat-strip{display:flex;gap:3px;margin-bottom:10px}
+  .heat-strip .dot{width:100%;max-width:28px;aspect-ratio:1;border-radius:50%;background:#f0e8dc;font-size:0;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .heat-strip .dot.on{background:var(--green2)}
+  .heat-strip .dot.today{box-shadow:0 0 0 2px var(--gold);background:#fff8e1}
+  .heat-strip .dot.today.on{background:var(--green2);box-shadow:0 0 0 2px var(--gold)}
+  .heat-strip .dot.empty{background:transparent}
 }
 </style>
 </head>
@@ -787,7 +800,8 @@ function renderCheckin(){
   const wk=['一','二','三','四','五','六','日'];
   const first=new Date(days[0].replace(/-/g,'/'));
   const pad=(first.getDay()+6)%7;
-  let grid='<div class="heat-wrap sketch"><div class="heat-legend">📅 近 30 天打卡日历</div><div class="cal-head">'+wk.map(w=>'<span>'+w+'</span>').join('')+'</div>';
+  // Desktop: 7-column calendar
+let grid='<div class="heat-wrap sketch heat-desktop"><div class="heat-legend">📅 近 30 天打卡日历</div><div class="cal-head">'+wk.map(w=>'<span>'+w+'</span>').join('')+'</div>';
   habits.forEach(h=>{
     let cells='';
     for(let i=0;i<pad;i++)cells+='<i class="cal-cell empty"></i>';
@@ -800,7 +814,19 @@ function renderCheckin(){
     grid+='<div class="heat-cal-row"><div class="heat-name2">'+esc(h.name)+'</div><div class="heat-cal">'+cells+'</div></div>';
   });
   grid+='<div class="heat-foot"><i></i> 未打卡 <i class="on"></i> 已打卡 <i class="today"></i> 今天</div></div>';
-  wrap.innerHTML=rows+grid;
+  // Mobile: compact dot strip (one row per habit)
+  let mgrid='<div class="heat-wrap sketch heat-mobile"><div class="heat-legend">📅 近 30 天</div>';
+  habits.forEach(h=>{
+    let dots='';
+    days.forEach(d=>{
+      const v=!!h.records[d];
+      const isToday=(d===todayKey());
+      dots+='<i class="dot'+(v?' on':'')+(isToday?' today':'')+(v?'">✔':'"></i>');
+    });
+    mgrid+='<div style="margin-bottom:8px"><div class="heat-name2">'+esc(h.name)+'</div><div class="heat-strip">'+dots+'</div></div>';
+  });
+  mgrid+='<div class="heat-foot" style="font-size:11px"><i></i> 未打 <i class="on"></i> 已打 <i class="today"></i> 今</div></div>';
+  wrap.innerHTML=rows+grid+mgrid;
 }
 function ckAdd(){
   const name=document.getElementById('ckName').value.trim();
