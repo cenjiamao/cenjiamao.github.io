@@ -895,12 +895,11 @@ function renderSummary(){
 async function loadSummaryForDate(dateVal){
   const body=document.getElementById('sumBody');
   if(!dateVal){dateVal='today';}
-  // today: 用 localStorage 的 current 或线上 summary.json
+  // today: 优先秒显 localStorage 缓存，同时后台静默拉取线上最新并覆盖（打开即自动更新）
   if(dateVal==='today'){
-    const data=D.summary.current;
-    if(data){body.innerHTML=sumHTML(data);return;}
-    // 没有 current 就从线上拉
-    body.innerHTML='<div class="empty">正在拉取最新汇总… ⏳</div>';
+    const cached=D.summary.current;
+    if(cached){body.innerHTML=sumHTML(cached);}
+    else{body.innerHTML='<div class="empty">正在拉取最新汇总… ⏳</div>';}
     try{
       const res=await fetch('summary.json?_='+Date.now(),{cache:'no-store'});
       if(!res.ok)throw new Error('HTTP '+res.status);
@@ -908,7 +907,7 @@ async function loadSummaryForDate(dateVal){
       D.summary.current=o;persist('summary');
       body.innerHTML=sumHTML(o);
     }catch(e){
-      body.innerHTML='<div class="empty">拉取失败：'+esc(e.message)+'<br><small>可点「同步今日汇总」重试</small></div>';
+      if(!cached)body.innerHTML='<div class="empty">拉取失败：'+esc(e.message)+'<br><small>可点「同步今日汇总」重试</small></div>';
     }
     return;
   }
