@@ -342,10 +342,6 @@ section.blk{margin-bottom:18px;padding:18px}
   <section class="view" id="view-summary">
     <section class="blk sketch">
       <div class="blkhd"><h2><svg class="doodle" width="18" height="18" viewBox="0 0 24 24" stroke="var(--doodle)" fill="none" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>每日汇总</h2>
-        <div class="chips">
-          <button class="chip sync" id="btnSyncSummary">🔄 同步今日汇总</button>
-          <span class="sync-status" id="syncStatus"></span>
-        </div>
       </div>
       <select class="arch-sel sketch" id="sumArchive"><option value="">加载中…</option></select>
       <div id="sumBody"></div>
@@ -907,7 +903,7 @@ async function loadSummaryForDate(dateVal){
       D.summary.current=o;persist('summary');
       body.innerHTML=sumHTML(o);
     }catch(e){
-      if(!cached)body.innerHTML='<div class="empty">拉取失败：'+esc(e.message)+'<br><small>可点「同步今日汇总」重试</small></div>';
+      if(!cached)body.innerHTML='<div class="empty">拉取失败：'+esc(e.message)+'<br><small>请稍后重试或强刷页面</small></div>';
     }
     return;
   }
@@ -976,21 +972,7 @@ function importSummaryText(text){
   showBanner('ok','每日汇总已导入：'+(o.date||'最新一期'));
   switchView('summary');
 }
-async function syncSummary(){
-  const st=document.getElementById('syncStatus');
-  st.textContent='同步中…';
-  try{
-    const res=await fetch('summary.json?_='+Date.now(),{cache:'no-store'});
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    const text=await res.text();
-    importSummaryText(text);
-    st.textContent='✅ 已同步 '+new Date().toLocaleString('zh-CN');
-  D.summary._lastSel='today';persist('summary');
-  document.getElementById('sumArchive').value='today';
-  }catch(e){
-    st.textContent='⚠️ 同步失败：'+((e&&e.message)||e)+'（可改用「导入文件」）';
-  }
-}
+/* syncSummary 已移除：打开工作台即自动拉取最新，无需手动同步 */
 
 /* ===== 事件绑定 ===== */
 function bind(){
@@ -1007,7 +989,7 @@ function bind(){
   document.getElementById('idSearch').oninput=e=>{idState.q=e.target.value;renderIdea();};
 
   document.getElementById('sumArchive').onchange=renderSummary;
-  document.getElementById('btnSyncSummary').onclick=syncSummary;
+  /* 手动同步按钮已移除：打开即自动刷新 */
 }
 
 /* ===== 启动 ===== */
