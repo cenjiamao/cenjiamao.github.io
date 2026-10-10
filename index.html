@@ -255,6 +255,17 @@ section.blk{margin-bottom:18px;padding:18px}
 .hr-item:last-child{border-bottom:none}
 .hr-title{font-size:14px;color:var(--blue);font-weight:600;margin-bottom:3px;font-family:var(--hand)}
 .hr-tip{font-size:11.5px;color:#8a6d2c;margin-top:4px;font-family:var(--hand)}
+.hr2-card{padding:12px 14px;background:#eef6fb;border-radius:12px;border-left:4px solid var(--blue)}
+.hr2-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:7px}
+.hr2-cat{font-size:11px;color:#fff;background:var(--blue);padding:2px 10px;border-radius:20px;font-family:var(--sans)}
+.hr2-topic{font-size:16px;font-weight:700;color:var(--ink);font-family:var(--hand)}
+.hr2-sum{font-size:13.5px;line-height:1.7;color:var(--ink2);margin-bottom:9px}
+.hr2-sub{font-size:12.5px;font-weight:600;color:var(--blue);margin:10px 0 5px;font-family:var(--hand)}
+.hr2-steps{margin-top:2px}
+.hr2-step{font-size:13px;line-height:1.75;color:var(--ink2);padding:6px 0 6px 4px;border-bottom:1px dashed var(--line)}
+.hr2-step:last-child{border-bottom:none}
+.hr2-ex{font-size:12.5px;line-height:1.7;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 12px;margin-top:2px}
+.hr2-tip{font-size:12px;color:#8a6d2c;margin-top:10px;font-family:var(--hand);background:rgba(255,255,255,.65);padding:8px 11px;border-radius:8px}
 .movie-ph{text-align:center;color:var(--ink3);font-size:14px;padding:18px 0;font-family:var(--hand)}
 .arch-sel{margin-bottom:12px;max-width:260px}
 
@@ -952,9 +963,23 @@ function sumHTML(d){
   if(d.qa){
     h+='<section class="blk sketch"><div class="blkhd"><h2>冷知识</h2></div><div class="qa-q">❓ '+esc(d.qa.q)+'</div><div class="qa-a">'+esc(d.qa.a)+'</div></section>';
   }
-  if(d.hr&&d.hr.length){
-    h+='<section class="blk sketch"><div class="blkhd"><h2>HR 技巧</h2></div>'
-      +d.hr.map(x=>'<div class="hr-item"><div class="hr-title">'+esc(x.title)+'</div><div>'+esc(x.desc||'')+'</div>'+(x.tip?'<div class="hr-tip">'+esc(x.tip)+'</div>':'')+'</div>').join('')+'</section>';
+  if(d.hr){
+    if(Array.isArray(d.hr)){
+      // 旧格式兼容（历史汇总）
+      h+='<section class="blk sketch"><div class="blkhd"><h2>HR 技巧</h2></div>'
+        +d.hr.map(x=>'<div class="hr-item"><div class="hr-title">'+esc(x.title)+'</div><div>'+esc(x.desc||'')+'</div>'+(x.tip?'<div class="hr-tip">'+esc(x.tip)+'</div>':'')+'</div>').join('')+'</section>';
+    }else{
+      // 新格式：每天 1 条 HR 实战（含步骤/模板）
+      var H=d.hr;
+      h+='<section class="blk sketch"><div class="blkhd"><h2>今日 HR 实战</h2></div>'
+        +'<div class="hr2-card">'
+        +'<div class="hr2-top"><span class="hr2-cat">'+esc(H.category||'')+'</span><div class="hr2-topic">'+esc(H.topic||'')+'</div></div>'
+        +'<div class="hr2-sum">'+esc(H.summary||'')+'</div>'
+        +(H.steps&&H.steps.length?'<div class="hr2-steps"><div class="hr2-sub">📋 操作步骤</div>'+H.steps.map(function(s){return '<div class="hr2-step">'+esc(s)+'</div>';}).join('')+'</div>':'')
+        +(H.example?'<div class="hr2-ex"><div class="hr2-sub">📎 模板 / 话术</div>'+esc(H.example)+'</div>':'')
+        +(H.tip?'<div class="hr2-tip">'+esc(H.tip)+'</div>':'')
+        +'</div></section>';
+    }
   }
   if(d.movie){
     h+='<section class="blk sketch"><div class="blkhd"><h2>周末影院</h2></div><div class="movie-ph">🎬 '+esc(d.movie.name||'')+(d.movie.note?'<br><span style="font-size:13px">'+esc(d.movie.note)+'</span>':'')+'</div></section>';
