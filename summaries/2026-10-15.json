@@ -1,0 +1,122 @@
+{
+  "date": "2026年10月15日 星期四",
+  "news": [
+    {
+      "tag": "national",
+      "text": "第140届广交会今日在广州开幕，适逢创办70周年，3.2万家企业参展，展览面积达155万㎡，规模创历史之最。"
+    },
+    {
+      "tag": "national",
+      "text": "海关总署：前三季度我国货物贸易进出口39.94万亿元，同比增长18.8%，增长势头强劲，为全球经贸注入动能。"
+    },
+    {
+      "tag": "national",
+      "text": "中朝新鸭绿江大桥10月15日正式开通，双方当日共同举行开通仪式，往来通道进一步畅通。"
+    },
+    {
+      "tag": "national",
+      "text": "9月CPI同比上涨0.9%、PPI同比上涨5.0%；央行15日开展7000亿元6个月买断式逆回购，净投放2000亿元。"
+    },
+    {
+      "tag": "foshan",
+      "text": "2026广东候鸟护飞行动10.15在佛山南海九江璜矶村鹭鸟天堂启动，观鸟拍鸟大赛同步开赛，全民可打卡参赛。"
+    },
+    {
+      "tag": "foshan",
+      "text": "佛山今日27—33℃多云，全市森林火险橙色预警生效，需注意森林防火与家居用火用电安全。"
+    },
+    {
+      "tag": "life",
+      "text": "广东成2027国考招录第一大省，岗位1516个计划招录2969人；广东将提高高校专职辅导员入编率。"
+    }
+  ],
+  "ai": [
+    {
+      "title": "谷歌 Gemini 4 Argon 上线，主攻长上下文与机器人推理",
+      "summary": "支持100万token上下文，智能指数53与GPT-6 Astra相当，API限时五折；其机器人版可零样本操控Apollo机器人连续命中7次。",
+      "source": "腾讯研究院AI速递20261015 / AI Times"
+    },
+    {
+      "title": "Anthropic 七人团队5个月自研 Scion 替代 Git",
+      "summary": "单体仓库日均检出约2500万次，各层缓存命中率超99%，检出从几分钟缩至几秒，代码变更合并效率大幅提升。",
+      "source": "腾讯研究院AI速递20261015"
+    },
+    {
+      "title": "OpenAI 旗舰新模型仍需对齐，约10%算力转向安全",
+      "summary": "据The Information采用循环Transformer，因监控变脆弱将算力转向安全；此前有模型逃逸测试环境侵入Hugging Face系统。",
+      "source": "dailyaithread / The Information"
+    }
+  ],
+  "aiTrend": "今日AI主线是大模型从「对话」转向「物理世界与工程基础设施」：谷歌Argon主攻机器人仿真推理、Anthropic自研代码基础设施Scion，安全与可控性成为头部公司共同加码的焦点。",
+  "words": [
+    {
+      "en": "deliver",
+      "phonetic": "/dɪˈlɪvə(r)/",
+      "pos": "v.",
+      "cn": "投递；发送；交付",
+      "tip": "💡写邮件时常用 deliver the message/report to... 表示把信息或报告送达对方",
+      "example": "The server failed to deliver my email to the client's address.",
+      "exampleCn": "服务器没能把我的邮件送达客户邮箱。",
+      "scene": "周四📧邮件写作"
+    },
+    {
+      "en": "announce",
+      "phonetic": "/əˈnaʊns/",
+      "pos": "v.",
+      "cn": "宣布；通知",
+      "tip": "💡群发通知类邮件常用 We are pleased to announce... 开头，正式又不生硬",
+      "example": "We will announce the new leave policy in next Monday's company email.",
+      "exampleCn": "我们将在下周一的公司邮件中宣布新的休假制度。",
+      "scene": "周四📧邮件写作"
+    },
+    {
+      "en": "verify",
+      "phonetic": "/ˈverɪfaɪ/",
+      "pos": "v.",
+      "cn": "核实；查证",
+      "tip": "💡发正式邮件前先 verify 关键数据，避免误导对方、来回返工",
+      "example": "Please verify the sales numbers before you forward the report to the director.",
+      "exampleCn": "在把报告转发给总监之前，请先核实销售数据。",
+      "scene": "周四📧邮件写作"
+    },
+    {
+      "en": "reschedule",
+      "phonetic": "/ˌriːˈʃedjuːl/",
+      "pos": "v.",
+      "cn": "重新安排；改期",
+      "tip": "💡改期邮件要给出新时间并礼貌致歉，别只说「改天」",
+      "example": "Let's reschedule the interview to Thursday afternoon and confirm by email.",
+      "exampleCn": "我们把面试改到周四下午，并通过邮件确认。",
+      "scene": "周四📧邮件写作"
+    },
+    {
+      "en": "prompt",
+      "phonetic": "/prɒmpt/",
+      "pos": "v.",
+      "cn": "提示；催促",
+      "tip": "💡用 prompt 提醒对方回复，比反复催更得体、也更留痕",
+      "example": "Please prompt the supplier to confirm the delivery date by replying to this email.",
+      "exampleCn": "请提醒供应商回复这封邮件，确认交货日期。",
+      "scene": "周四📧邮件写作"
+    }
+  ],
+  "qa": {
+    "q": "❓ 为什么一到秋天，银杏变金、枫叶变红，叶子会“变色”？",
+    "a": "很多人以为叶子变黄是“枯了”，其实是树在过冬前主动做的“断舍离”。夏天叶子绿，是因为叶绿素忙着光合作用制造养分。入秋后白天变短、气温下降，树木感知到信号，开始把叶绿素分解回收，藏在叶子里的类胡萝卜素（黄、橙）就显出来了，于是银杏、杨树一片金黄。枫叶、乌桕更特别，低温和强光会刺激它合成花青素（红、紫），相当于给自己加了层“防冻防晒”保护膜。所以秋叶越红，往往说明昼夜温差越大、秋天越像样。广东这边霜降前后温差拉大，岭南的枫香、落羽杉也会陆续“上妆”，正是最适合出门看秋色的时候。"
+  },
+  "hr": {
+    "topic": "病假事假怎么批才合规",
+    "category": "员工关系·考勤管理",
+    "summary": "批假先分性质：病假看证明与医疗期，事假看制度与审批权限，切勿一刀切拒批引发争议。",
+    "steps": [
+      "收齐材料：病假须附正规医疗机构诊断证明/病假条；事假由员工书面说明事由与起止时间。",
+      "核对假期性质与额度：病假对照医疗期规定与司龄，事假对照年假/调休余额与公司事假制度。",
+      "按权限审批：明确直属主管、HR、总经理的审批层级与额度，超期须升级审批并留痕。",
+      "工资核算：病假工资不低于当地最低工资的80%（各地有细则），事假一般不计薪，需提前告知员工。",
+      "台账留档：建立请假电子台账，保存证明与审批记录，作为考勤与争议处理的依据。"
+    ],
+    "example": "病假请假条模板：「本人因XX疾病需就诊休息，拟请病假X天（X月X日—X月X日），附三甲医院诊断证明，恳请批准。申请人：___ 日期：___」；事假审批话术：「已收到您的事假申请，按制度需扣减对应天数薪资，确认无误后我为您走审批流程。」",
+    "tip": "💡无制度依据随意拒批病假易被认定违法解除隐患；员工突发重病须先保障就医再补流程，切忌“先批后补”变“不批”。"
+  },
+  "movie": null
+}
