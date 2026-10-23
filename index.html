@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>毛毛的日常小台</title>
@@ -85,6 +86,8 @@ header::after{content:"";position:absolute;bottom:-3px;left:0;right:0;height:6px
 .tbtn.danger:hover{border-color:var(--clay2);color:var(--clay2)}
 
 /* 横幅 */
+.sync{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--ink2);background:var(--paper);border:1px solid var(--line2);border-radius:999px;padding:4px 11px;white-space:nowrap}
+.sync.off{opacity:.55}
 .banner{display:none;margin:10px 0 0;padding:10px 14px;border-radius:14px;font-size:13.5px;
   align-items:center;justify-content:space-between;gap:10px;font-family:var(--hand)}
 .banner.on{display:flex}
@@ -330,6 +333,7 @@ section.blk{margin-bottom:18px;padding:18px}
 <header>
   <div class="wrap hd">
     <div class="brand"><h1>毛毛的日常小台</h1><span class="sub">DAILY DESK</span></div>
+    <span class="sync" id="syncPill">📡 同步中…</span>
 
   </div>
   <div class="wrap"><div class="banner" id="banner"></div></div>
@@ -468,6 +472,7 @@ section.blk{margin-bottom:18px;padding:18px}
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
 <script>
 "use strict";
 /* ===== 时间（北京时间） ===== */
@@ -606,10 +611,101 @@ function persist(k){
     showBanner('err',msg+'（本次操作未生效，请清理空间或退出无痕模式）');
   }
   if(k!=='meta'){try{localStorage.setItem('wb_desk_meta',JSON.stringify(D.meta));}catch(_){}}
+  cloudSave();
 }
 function bump(){
   D.meta.counter++;persist('meta');
   if(D.meta.counter%20===0)showBanner('ok','\u{1F389} 已记录 '+D.meta.counter+' 条内容，继续加油～');
+}
+
+/* ===== 云同步（免登录 · 手机电脑互通） ===== */
+var CLOUD_CFG={endpoint:'https://selfmedia-workbench-43339.app.workbuddy.host',publishableKey:'wbpk_sNot0ghInZbrXG4Pl4cyFt_E7oaPpYYx8S4ZCKBmYg151uY60TRvrfb'};
+var cloud=null,saveTimer=null;
+var DESK_KEYS=['checkin','todo','memo','idea','summary','meta'];
+var DEMO_MARK={
+  checkin:['学多邻国英语','听播客','看有道云回顾','发自媒体（大众/抖音/小红书·评论留言）','AI学习&应用（生图/视频/场景）','投简历','人力专业学习','运动做操拉伸'],
+  todo:['整理金地资料归档','给女儿挑两本课外书','回复 recruiter 微信'],
+  memo:['周末想试的粤式早茶清单','面试故事素材·离职面谈'],
+  idea:['做一档「HR 也懂生活」短视频：把枯燥的劳动法小知识用佛山生活场景讲出来，比如租房合同、产假那些事。','周末市集摆个手作摊，和女儿一起做小黏土，练表达也测一下大众点评内容。']
+};
+function cloudInit(){
+  try{
+    if(window.WorkBuddyCloud&&window.WorkBuddyCloud.createWorkBuddyCloud){
+      cloud=window.WorkBuddyCloud.createWorkBuddyCloud(CLOUD_CFG);return true;
+    }
+  }catch(e){console.warn('[cloud] init fail',e);}
+  return false;
+}
+function packD(){const p={};DESK_KEYS.forEach(function(k){p[k]=D[k]});return p;}
+/* 只认用户自己录的数据：演示数据不算，防止新设备把演示推上云端 */
+function hasUserData(p){
+  if(!p)return false;
+  if(p.meta&&(p.meta.counter>0||p.meta.lastBackup))return true;
+  if((p.checkin&&p.checkin.habits||[]).some(function(h){return DEMO_MARK.checkin.indexOf(h.name)<0}))return true;
+  if((p.todo&&p.todo.todos||[]).some(function(t){return DEMO_MARK.todo.indexOf(t.title)<0}))return true;
+  if((p.memo&&p.memo.notes||[]).some(function(n){return DEMO_MARK.memo.indexOf(n.title)<0}))return true;
+  if((p.idea&&p.idea.ideas||[]).some(function(i){return DEMO_MARK.idea.indexOf(i.body)<0}))return true;
+  return false;
+}
+async function cloudLoad(){
+  if(!cloud)return {ok:false,reason:'no-sdk'};
+  try{
+    const r=await cloud.database.from('wb_desk').select('data').eq('id',1).maybeSingle();
+    if(r.error)throw r.error;
+    return {ok:true,data:(r.data&&r.data.data)||null};
+  }catch(e){console.warn('[cloud] load fail',e);return {ok:false,reason:'net'};}
+}
+function cloudSave(){
+  if(!cloud)return;
+  const p=packD();
+  if(!hasUserData(p))return; /* 纯演示数据不上云 */
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(async function(){
+    try{
+      const r=await cloud.database.from('wb_desk').upsert({id:1,data:p}).select();
+      if(r.error)throw r.error;
+      setSyncPill('on','📡 已同步');
+    }catch(e){console.warn('[cloud] save fail',e);setSyncPill('off','📡 同步失败');}
+  },600);
+}
+function setSyncPill(state,text){
+  const el=document.getElementById('syncPill');if(!el)return;
+  el.textContent=text;
+  if(state==='off')el.classList.add('off');else el.classList.remove('off');
+}
+async function cloudSync(){
+  cloudInit();
+  setSyncPill('busy','📡 同步中…');
+  const cl=await cloudLoad();
+  if(cl.ok&&cl.data&&hasUserData(cl.data)){
+    /* 云端有真实数据：以云端为准（直接写本地，不触发回传） */
+    let changed=false;
+    DESK_KEYS.forEach(function(k){
+      if(cl.data[k]!==undefined){
+        D[k]=cl.data[k];changed=true;
+        try{localStorage.setItem('wb_desk_'+k,JSON.stringify(D[k]));}catch(e){}
+      }
+    });
+    if(changed){
+      try{localStorage.setItem('wb_desk_meta',JSON.stringify(D.meta));}catch(e){}
+      renderCheckin();renderTodo();renderMemo();renderIdea();renderSummary();renderHome();
+      showBanner('ok','已从云端恢复最新数据 ✨');
+    }
+    setSyncPill('on','📡 云端已同步');
+  }else if(cl.ok){
+    /* 云端为空：本地有真数据就推上去（旧数据自动搬家） */
+    if(hasUserData(packD())){
+      cloudSave();
+      setSyncPill('on','📡 已存云端');
+      showBanner('ok','本地数据已上传云端，现在手机电脑互通啦 🎉');
+    }else{
+      setSyncPill('on','📡 已就绢');
+      showBanner('ok','云同步已就位 ✅ 之后在小台记的内容，手机电脑自动互通。');
+    }
+  }else{
+    setSyncPill('off','📡 本地模式');
+    showBanner('warn','网络不稳定，云同步暂时不可用——改动会先存本设备，恢复网络后自动同步。');
+  }
 }
 
 /* ===== 横幅 ===== */
@@ -1018,7 +1114,7 @@ function bind(){
 }
 
 /* ===== 启动 ===== */
-load();buildNav();bind();switchView('home');
+load();buildNav();bind();switchView('home');cloudSync();
 </script>
 </body>
 </html>
