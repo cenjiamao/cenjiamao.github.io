@@ -1,0 +1,122 @@
+{
+  "date": "2026年10月29日 星期四",
+  "news": [
+    {
+      "tag": "national",
+      "text": "二十届五中全会10月26—29日在北京召开，聚焦「十五五」规划建议编制。"
+    },
+    {
+      "tag": "national",
+      "text": "10月29日24时国内油价或迎第21轮上调，92号汽油预计涨约0.3元/升。"
+    },
+    {
+      "tag": "life",
+      "text": "新一轮冷空气今天抵粤，明晨或成下半年最冷，广东局地降温超8℃。"
+    },
+    {
+      "tag": "foshan",
+      "text": "佛山一环西拓北环段首期今日通车，全长26公里、7座跨线桥、全线无红绿灯。"
+    },
+    {
+      "tag": "foshan",
+      "text": "佛山公积金异地转移接续平台今起直联，至11月28日暂停现场受理该业务。"
+    },
+    {
+      "tag": "foshan",
+      "text": "禅城山姆开业即火，佛山金秋消费一月两度「燃爆」，顺德启动「就业100」行动。"
+    },
+    {
+      "tag": "life",
+      "text": "广东非遗周暨佛山秋色活动盛大开启，西樵分场巡游本周末引客，烟火气满满。"
+    }
+  ],
+  "ai": [
+    {
+      "title": "谷歌 Gemini 4 Carbon 登顶智能指数榜首",
+      "summary": "DeepMind 发布新一代前沿模型，Artificial Analysis 智能指数 v5 以59分登顶，主打网络安全与长程任务。",
+      "source": "AI速递 / Google DeepMind"
+    },
+    {
+      "title": "ChatGPT 智能体 dot 接入 iMessage 与 RCS",
+      "summary": "OpenAI 让用户用系统信息应用布置任务；同时启动谷歌 TPU 适配，降低对单一算力厂商依赖。",
+      "source": "AI速递 / OpenAI"
+    },
+    {
+      "title": "苹果发布首款触屏 MacBook Pro",
+      "summary": "新机配 OLED 屏、最高128GB 内存可本地跑大模型；同场推出 M6 芯片，10月29日预售。",
+      "source": "AI速递 / Apple"
+    }
+  ],
+  "aiTrend": "今日 AI 主线是「算力去单一化 + 智能体走进日常」：OpenAI 适配谷歌 TPU、谷歌开放 Android 第三方智能体接入，竞争焦点从单一模型转向智能体运行底座与多路线算力；大模型也正加速嵌入手机、信息应用等真实入口。",
+  "words": [
+    {
+      "en": "mention",
+      "phonetic": "/ˈmenʃ(ə)n/",
+      "pos": "v.",
+      "cn": "提及；提到",
+      "tip": "💡邮件里顺带提一句相关背景或前情，常用 As mentioned above / Please mention…",
+      "example": "Please mention the revised deadline in your reply to the client.",
+      "exampleCn": "请在给客户的回复中提及修订后的截止日期。",
+      "scene": "周四📧邮件写作"
+    },
+    {
+      "en": "propose",
+      "phonetic": "/prəˈpəʊz/",
+      "pos": "v.",
+      "cn": "提议；建议",
+      "tip": "💡邮件里提方案用 I'd like to propose…，比直接下命令更得体",
+      "example": "I'd like to propose a shorter timeline for this phase.",
+      "exampleCn": "我想提议这一阶段采用更紧凑的时间表。",
+      "scene": "周四📧邮件写作"
+    },
+    {
+      "en": "quote",
+      "phonetic": "/kwəʊt/",
+      "pos": "v.",
+      "cn": "引用；引述；报价",
+      "tip": "💡回复中引用对方原话用 To quote your email…；商务里也指报价",
+      "example": "To quote your email, we should confirm the budget first.",
+      "exampleCn": "引用您邮件中的话，我们应首先确认预算。",
+      "scene": "周四📧邮件写作"
+    },
+    {
+      "en": "state",
+      "phonetic": "/steɪt/",
+      "pos": "v.",
+      "cn": "陈述；声明",
+      "tip": "💡正式邮件「特此说明」用 We would like to state that…，语气清晰",
+      "example": "We would like to state the new policy takes effect next Monday.",
+      "exampleCn": "我们特此说明新政策自下周一起生效。",
+      "scene": "周四📧邮件写作"
+    },
+    {
+      "en": "express",
+      "phonetic": "/ɪkˈspres/",
+      "pos": "v.",
+      "cn": "表达；表示",
+      "tip": "💡邮件结尾表达感谢/歉意：I'd like to express my appreciation for your support.",
+      "example": "I'd like to express my appreciation for your quick response.",
+      "exampleCn": "我想对您的快速回复表达感谢。",
+      "scene": "周四📧邮件写作"
+    }
+  ],
+  "qa": {
+    "q": "❓ 为什么广东人一年四季都爱「饮糖水」，双皮奶、姜撞奶凭什么成为标配？",
+    "a": "广东人说的「糖水」不是加糖的白开水，而是用食材慢火熬成的甜羹——红豆沙、绿豆沙、芝麻糊、银耳羹，再到顺德的双皮奶、姜撞奶。它既是饭后甜品，也是「润」的日常：岭南气候湿热，老广相信甜汤能清润降火、补虚养人，于是糖水铺从早开到深夜，成了街坊的「续命站」。顺德双皮奶为何出名？关键在于水牛奶脂肪高、蛋白足，蒸后表面结出两层奶皮，口感细滑醇厚；姜撞奶则靠老姜汁里的蛋白酶遇热牛奶凝固，一碗「撞」出嫩滑，是物理与火候的巧劲。一碗糖水，装的是广东人对「食养」的讲究，也是慢生活里的小确幸。"
+  },
+  "hr": {
+    "topic": "员工离职交接清单怎么列才不留死角",
+    "category": "离职管理",
+    "summary": "离职交接用标准化清单分模块移交，双方签字确认，避免「人走账不清」、客户与资料断层。",
+    "steps": [
+      "① 确认最后工作日后当天即下发《离职交接清单》，明确交接起止时间。",
+      "② 按模块拆分：工作事项、文件资料、账号权限、客户关系、在办项目、财物归还。",
+      "③ 指定接手人，逐项当面移交；密码、密钥等敏感信息须双方在场交接。",
+      "④ 接手人核对无误后签字，部门负责人复核，HR 收回门禁与系统权限。",
+      "⑤ 交接单扫描归档备查，并提示离职员工履行保密与竞业限制义务。"
+    ],
+    "example": "交接清单字段参考：序号｜交接内容｜载体/位置（系统名、文件夹、账号）｜接手人｜完成确认（签字+日期）。关键客户须附近期跟进记录与下一步动作。",
+    "tip": "💡易踩坑：只交文件不交「坑点」——务必让离职人写出在办项目的卡点与待决策事项，否则接手人接的是「半成品」。"
+  },
+  "movie": null
+}
