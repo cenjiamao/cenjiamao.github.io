@@ -1,122 +1,122 @@
 {
-  "date": "2026年10月28日 星期三",
+  "date": "2026年10月29日 星期四",
   "news": [
     {
       "tag": "national",
-      "text": "国家广电总局发布新规，11月27日起施行：有线电视须开机看全屏直播、设频道回看入口、不得播开机广告。"
+      "text": "二十届五中全会10月26—29日在北京召开，聚焦「十五五」规划建议编制。"
     },
     {
       "tag": "national",
-      "text": "国家统计局：1—9月全国规上工业企业利润同比增15.5%，今年以来持续保持两位数增长。"
-    },
-    {
-      "tag": "national",
-      "text": "中国等26国签署《联合国可转让货物单证公约》，由中方发起引领，打破仅海运提单代表货权壁垒。"
-    },
-    {
-      "tag": "foshan",
-      "text": "顺德容奇港12月1日起暂停营业，走过39年的顺德首个外贸港口即将落幕。"
-    },
-    {
-      "tag": "foshan",
-      "text": "高明苏村锦鲤文化街区人才夜市招聘会今晚19:30举行，超20家企业参与，设AI求职区。"
+      "text": "10月29日24时国内油价或迎第21轮上调，92号汽油预计涨约0.3元/升。"
     },
     {
       "tag": "life",
-      "text": "广东进入流感季，符合条件老年人和中小学生可免费接种1剂次流感疫苗，可线上预约。"
+      "text": "新一轮冷空气今天抵粤，明晨或成下半年最冷，广东局地降温超8℃。"
+    },
+    {
+      "tag": "foshan",
+      "text": "佛山一环西拓北环段首期今日通车，全长26公里、7座跨线桥、全线无红绿灯。"
+    },
+    {
+      "tag": "foshan",
+      "text": "佛山公积金异地转移接续平台今起直联，至11月28日暂停现场受理该业务。"
+    },
+    {
+      "tag": "foshan",
+      "text": "禅城山姆开业即火，佛山金秋消费一月两度「燃爆」，顺德启动「就业100」行动。"
     },
     {
       "tag": "life",
-      "text": "33岁小伙盲目「秋冻」诱发脑出血，医生提醒高血压等基础病患者降温需及时添衣护头颈。"
+      "text": "广东非遗周暨佛山秋色活动盛大开启，西樵分场巡游本周末引客，烟火气满满。"
     }
   ],
   "ai": [
     {
-      "title": "Google DeepMind 发布 Genie 4 世界模型",
-      "summary": "原生音频加持，一句话生成可交互3D世界，支持实时改天气视角，模拟时长约2分钟。",
-      "source": "Google DeepMind 官方 / TechCrunch"
+      "title": "谷歌 Gemini 4 Carbon 登顶智能指数榜首",
+      "summary": "DeepMind 发布新一代前沿模型，Artificial Analysis 智能指数 v5 以59分登顶，主打网络安全与长程任务。",
+      "source": "AI速递 / Google DeepMind"
     },
     {
-      "title": "OpenAI 发布 GPT-6.1 Terra 中端模型",
-      "summary": "主打电脑操作(computer use)场景，API价格较前代降50%，任务速度达旗舰3倍。",
-      "source": "OpenAI 官方 / The Register"
+      "title": "ChatGPT 智能体 dot 接入 iMessage 与 RCS",
+      "summary": "OpenAI 让用户用系统信息应用布置任务；同时启动谷歌 TPU 适配，降低对单一算力厂商依赖。",
+      "source": "AI速递 / OpenAI"
     },
     {
-      "title": "Anthropic 向 SEC 提交 S-1 启动 IPO",
-      "summary": "拟以代码 ANT 登陆纳斯达克，披露上半年营收约163亿美元及巨额算力采购承诺。",
-      "source": "The Verge / Anthropic 公开文件"
+      "title": "苹果发布首款触屏 MacBook Pro",
+      "summary": "新机配 OLED 屏、最高128GB 内存可本地跑大模型；同场推出 M6 芯片，10月29日预售。",
+      "source": "AI速递 / Apple"
     }
   ],
-  "aiTrend": "今日AI关键词是「世界模型」与「算力资本结盟」：谷歌Genie 4把实时交互世界模拟推进到原生音频时代，OpenAI以半价中端模型主攻电脑操作，头部玩家在算力与资本层面加速绑定，国产开源模型持续升温。",
+  "aiTrend": "今日 AI 主线是「算力去单一化 + 智能体走进日常」：OpenAI 适配谷歌 TPU、谷歌开放 Android 第三方智能体接入，竞争焦点从单一模型转向智能体运行底座与多路线算力；大模型也正加速嵌入手机、信息应用等真实入口。",
   "words": [
     {
-      "en": "kitchen",
-      "phonetic": "/ˈkɪtʃɪn/",
-      "pos": "n.",
-      "cn": "厨房",
-      "tip": "💡 居家日常高频词，聊做饭、收纳、打扫都常用",
-      "example": "My mother is cooking dinner in the kitchen.",
-      "exampleCn": "妈妈正在厨房里做晚饭。",
-      "scene": "周三🏠生活日常"
+      "en": "mention",
+      "phonetic": "/ˈmenʃ(ə)n/",
+      "pos": "v.",
+      "cn": "提及；提到",
+      "tip": "💡邮件里顺带提一句相关背景或前情，常用 As mentioned above / Please mention…",
+      "example": "Please mention the revised deadline in your reply to the client.",
+      "exampleCn": "请在给客户的回复中提及修订后的截止日期。",
+      "scene": "周四📧邮件写作"
     },
     {
-      "en": "window",
-      "phonetic": "/ˈwɪndəʊ/",
-      "pos": "n.",
-      "cn": "窗户",
-      "tip": "💡 描述采光、通风、擦窗都好用",
-      "example": "Please open the window to let in some fresh air.",
-      "exampleCn": "请打开窗户透透气。",
-      "scene": "周三🏠生活日常"
+      "en": "propose",
+      "phonetic": "/prəˈpəʊz/",
+      "pos": "v.",
+      "cn": "提议；建议",
+      "tip": "💡邮件里提方案用 I'd like to propose…，比直接下命令更得体",
+      "example": "I'd like to propose a shorter timeline for this phase.",
+      "exampleCn": "我想提议这一阶段采用更紧凑的时间表。",
+      "scene": "周四📧邮件写作"
     },
     {
-      "en": "floor",
-      "phonetic": "/flɔː(r)/",
-      "pos": "n.",
-      "cn": "地板；楼层",
-      "tip": "💡 打扫、拖地、说住几楼都会用到",
-      "example": "The floor in the living room needs mopping today.",
-      "exampleCn": "今天客厅的地板需要拖一拖。",
-      "scene": "周三🏠生活日常"
+      "en": "quote",
+      "phonetic": "/kwəʊt/",
+      "pos": "v.",
+      "cn": "引用；引述；报价",
+      "tip": "💡回复中引用对方原话用 To quote your email…；商务里也指报价",
+      "example": "To quote your email, we should confirm the budget first.",
+      "exampleCn": "引用您邮件中的话，我们应首先确认预算。",
+      "scene": "周四📧邮件写作"
     },
     {
-      "en": "doorbell",
-      "phonetic": "/ˈdɔːbel/",
-      "pos": "n.",
-      "cn": "门铃",
-      "tip": "💡 说到有人敲门、收快递很好用",
-      "example": "The doorbell rang just as we sat down for dinner.",
-      "exampleCn": "我们刚坐下吃饭，门铃就响了。",
-      "scene": "周三🏠生活日常"
+      "en": "state",
+      "phonetic": "/steɪt/",
+      "pos": "v.",
+      "cn": "陈述；声明",
+      "tip": "💡正式邮件「特此说明」用 We would like to state that…，语气清晰",
+      "example": "We would like to state the new policy takes effect next Monday.",
+      "exampleCn": "我们特此说明新政策自下周一起生效。",
+      "scene": "周四📧邮件写作"
     },
     {
-      "en": "toothpaste",
-      "phonetic": "/ˈtuːθpeɪst/",
-      "pos": "n.",
-      "cn": "牙膏",
-      "tip": "💡 早晚刷牙、列购物清单必备词",
-      "example": "We are out of toothpaste; remember to buy a new tube.",
-      "exampleCn": "牙膏用完了，记得买一支新的。",
-      "scene": "周三🏠生活日常"
+      "en": "express",
+      "phonetic": "/ɪkˈspres/",
+      "pos": "v.",
+      "cn": "表达；表示",
+      "tip": "💡邮件结尾表达感谢/歉意：I'd like to express my appreciation for your support.",
+      "example": "I'd like to express my appreciation for your quick response.",
+      "exampleCn": "我想对您的快速回复表达感谢。",
+      "scene": "周四📧邮件写作"
     }
   ],
   "qa": {
-    "q": "❓ 为什么广东人煲汤总爱放「五指毛桃」「土茯苓」这类草药根，还把五指毛桃叫「广东人参」？",
-    "a": "广东气候湿热，老广煲汤讲究「药食同源」，不靠猛药，而是把温和的草药根炖进汤里调理身子。五指毛桃因叶子像五指、果实毛茸茸得名，性平不燥，煲出的汤有一股淡淡的椰奶香，能健脾化湿、舒筋活络。岭南人觉得它补气却不似人参那般峻猛，便亲切称它「广东人参」。土茯苓则擅长祛湿解毒、通利关节，回南天或湿热重时最常被请进砂锅。这类汤料多长在山野村边，取材方便、药性平和，家家砂锅一煲就是几小时，把「祛湿健脾」过成了日常。一来二去，草药根煲汤就成了广府饮食里抹不掉的一笔。"
+    "q": "❓ 为什么广东人一年四季都爱「饮糖水」，双皮奶、姜撞奶凭什么成为标配？",
+    "a": "广东人说的「糖水」不是加糖的白开水，而是用食材慢火熬成的甜羹——红豆沙、绿豆沙、芝麻糊、银耳羹，再到顺德的双皮奶、姜撞奶。它既是饭后甜品，也是「润」的日常：岭南气候湿热，老广相信甜汤能清润降火、补虚养人，于是糖水铺从早开到深夜，成了街坊的「续命站」。顺德双皮奶为何出名？关键在于水牛奶脂肪高、蛋白足，蒸后表面结出两层奶皮，口感细滑醇厚；姜撞奶则靠老姜汁里的蛋白酶遇热牛奶凝固，一碗「撞」出嫩滑，是物理与火候的巧劲。一碗糖水，装的是广东人对「食养」的讲究，也是慢生活里的小确幸。"
   },
   "hr": {
-    "topic": "竞业限制协议怎么签才有效（含补偿标准）",
-    "category": "劳动法务",
-    "summary": "竞业限制要有效，关键看人员范围、期限、补偿、违约金四要素是否齐备且合理，缺一不可。",
+    "topic": "员工离职交接清单怎么列才不留死角",
+    "category": "离职管理",
+    "summary": "离职交接用标准化清单分模块移交，双方签字确认，避免「人走账不清」、客户与资料断层。",
     "steps": [
-      "① 先锁定适用人群：仅限高管、高技、负有保密义务人员，普通员工签了也易无效",
-      "② 书面约定清楚：在劳动合同或保密协议里写明竞业范围、地域、期限（最长不超2年）",
-      "③ 按月支付经济补偿：离职后按月发，标准不低于离职前12个月平均工资30%且不低于当地最低工资",
-      "④ 明确违约后果：约定违约金，但数额要合理，过分高可被法院调低",
-      "⑤ 离职时再次确认：用人单位可在离职时书面通知是否启动竞业限制，不启动则无需支付补偿"
+      "① 确认最后工作日后当天即下发《离职交接清单》，明确交接起止时间。",
+      "② 按模块拆分：工作事项、文件资料、账号权限、客户关系、在办项目、财物归还。",
+      "③ 指定接手人，逐项当面移交；密码、密钥等敏感信息须双方在场交接。",
+      "④ 接手人核对无误后签字，部门负责人复核，HR 收回门禁与系统权限。",
+      "⑤ 交接单扫描归档备查，并提示离职员工履行保密与竞业限制义务。"
     ],
-    "example": "参考条款：「乙方离职后2年内不得入职与甲方有竞争关系的同行企业；甲方按月支付补偿，标准为离职前月均工资30%；若违约，乙方支付违约金__万元。」",
-    "tip": "💡 仅约定竞业限制却不付补偿，员工可主张协议不生效；企业要在离职后及时足额发放，否则员工有权解除。"
+    "example": "交接清单字段参考：序号｜交接内容｜载体/位置（系统名、文件夹、账号）｜接手人｜完成确认（签字+日期）。关键客户须附近期跟进记录与下一步动作。",
+    "tip": "💡易踩坑：只交文件不交「坑点」——务必让离职人写出在办项目的卡点与待决策事项，否则接手人接的是「半成品」。"
   },
   "movie": null
 }
