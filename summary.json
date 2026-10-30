@@ -1,122 +1,122 @@
 {
-  "date": "2026年10月29日 星期四",
+  "date": "2026年10月30日 星期五",
   "news": [
     {
       "tag": "national",
-      "text": "二十届五中全会10月26—29日在北京召开，聚焦「十五五」规划建议编制。"
+      "text": "中共二十届五中全会10月26日至29日在北京举行，审议通过《关于持之以恒推进全面从严治党若干重大问题的决定》。"
     },
     {
       "tag": "national",
-      "text": "10月29日24时国内油价或迎第21轮上调，92号汽油预计涨约0.3元/升。"
+      "text": "全会决定党的第二十次全国代表大会于2027年下半年在北京召开，并增选张升民为中央政治局委员。"
+    },
+    {
+      "tag": "foshan",
+      "text": "第二十七届中国美食节10月29日在佛山南海开幕，持续至11月1日，系商务部『中华美食文化季』重点促消费活动。"
+    },
+    {
+      "tag": "foshan",
+      "text": "佛山工会大食堂在家电园区投用，60多道菜品、650个座位，职工凭补贴券实付低至1元，破解产业工人就餐难。"
+    },
+    {
+      "tag": "foshan",
+      "text": "佛山市第十一届职工集体婚礼10月26日在西江国际游艇会举行，100对制造业及新业态职工新人完婚。"
     },
     {
       "tag": "life",
-      "text": "新一轮冷空气今天抵粤，明晨或成下半年最冷，广东局地降温超8℃。"
+      "text": "珠三角多地推婚育支持，东莞常平苏坑村向新婚夫妻发婚嫁补贴与旅游基金、向二孩三孩家庭发生育奖励共14万元。"
     },
     {
       "tag": "foshan",
-      "text": "佛山一环西拓北环段首期今日通车，全长26公里、7座跨线桥、全线无红绿灯。"
-    },
-    {
-      "tag": "foshan",
-      "text": "佛山公积金异地转移接续平台今起直联，至11月28日暂停现场受理该业务。"
-    },
-    {
-      "tag": "foshan",
-      "text": "禅城山姆开业即火，佛山金秋消费一月两度「燃爆」，顺德启动「就业100」行动。"
-    },
-    {
-      "tag": "life",
-      "text": "广东非遗周暨佛山秋色活动盛大开启，西樵分场巡游本周末引客，烟火气满满。"
+      "text": "2026农民丰收节潮玩音乐汉服文化周10月30日至11月5日在佛山里水举办，含汉服巡游、非遗变脸、音乐专场。"
     }
   ],
   "ai": [
     {
-      "title": "谷歌 Gemini 4 Carbon 登顶智能指数榜首",
-      "summary": "DeepMind 发布新一代前沿模型，Artificial Analysis 智能指数 v5 以59分登顶，主打网络安全与长程任务。",
-      "source": "AI速递 / Google DeepMind"
+      "title": "谷歌发布 Gemini 4 Carbon，登顶智能指数且首发半价",
+      "summary": "以59分登顶AA智能指数5.0，输入价2美元/百万Token为Opus 5.5一半，Terminal-Bench 4.0等多项刷新SOTA。",
+      "source": "腾讯研究院AI速递 20261030"
     },
     {
-      "title": "ChatGPT 智能体 dot 接入 iMessage 与 RCS",
-      "summary": "OpenAI 让用户用系统信息应用布置任务；同时启动谷歌 TPU 适配，降低对单一算力厂商依赖。",
-      "source": "AI速递 / OpenAI"
+      "title": "腾讯推出 Buddy One 跨应用 AI 协同体系",
+      "summary": "打通腾讯文档、会议、网盘与ima，共享WorkBuddy Agent底座，一句话跨应用检索资料并标注来源。",
+      "source": "腾讯研究院AI速递 20261030"
     },
     {
-      "title": "苹果发布首款触屏 MacBook Pro",
-      "summary": "新机配 OLED 屏、最高128GB 内存可本地跑大模型；同场推出 M6 芯片，10月29日预售。",
-      "source": "AI速递 / Apple"
+      "title": "可灵 Kling 4.0 API 面向全球开发者开放",
+      "summary": "10月28日起开放API，支持最长30秒原生生成与多关键帧控制，Miora、OpenArt等平台已接入。",
+      "source": "腾讯研究院AI速递 20261030"
     }
   ],
-  "aiTrend": "今日 AI 主线是「算力去单一化 + 智能体走进日常」：OpenAI 适配谷歌 TPU、谷歌开放 Android 第三方智能体接入，竞争焦点从单一模型转向智能体运行底座与多路线算力；大模型也正加速嵌入手机、信息应用等真实入口。",
+  "aiTrend": "今日AI主线是「底座+协同+开放」：谷歌以低价高分之姿加剧模型价格战，腾讯把多款办公产品统一到同一Agent底座做跨应用协同，国内视频模型Kling 4.0开放API加速与企业工作流融合。模型能力趋同下，谁能把AI真正嵌进真实工作流、降低使用门槛，谁就更占先机。",
   "words": [
     {
-      "en": "mention",
-      "phonetic": "/ˈmenʃ(ə)n/",
-      "pos": "v.",
-      "cn": "提及；提到",
-      "tip": "💡邮件里顺带提一句相关背景或前情，常用 As mentioned above / Please mention…",
-      "example": "Please mention the revised deadline in your reply to the client.",
-      "exampleCn": "请在给客户的回复中提及修订后的截止日期。",
-      "scene": "周四📧邮件写作"
+      "en": "beach",
+      "phonetic": "/biːtʃ/",
+      "pos": "n.",
+      "cn": "海滩，沙滩",
+      "scene": "周五🎒休闲旅游",
+      "tip": "💡 周末去海边放松，beach是高频词，也可作动词表示「上岸、搁浅」。",
+      "example": "We spent the whole afternoon lying on the sunny beach.",
+      "exampleCn": "我们整个下午都躺在阳光明媚的海滩上。"
     },
     {
-      "en": "propose",
-      "phonetic": "/prəˈpəʊz/",
-      "pos": "v.",
-      "cn": "提议；建议",
-      "tip": "💡邮件里提方案用 I'd like to propose…，比直接下命令更得体",
-      "example": "I'd like to propose a shorter timeline for this phase.",
-      "exampleCn": "我想提议这一阶段采用更紧凑的时间表。",
-      "scene": "周四📧邮件写作"
+      "en": "island",
+      "phonetic": "/ˈaɪlənd/",
+      "pos": "n.",
+      "cn": "岛屿",
+      "scene": "周五🎒休闲旅游",
+      "tip": "💡 度假常选海岛游，island搭配tropical（热带的）很常用。",
+      "example": "The small island is only reachable by boat.",
+      "exampleCn": "那座小岛只能乘船到达。"
     },
     {
-      "en": "quote",
-      "phonetic": "/kwəʊt/",
-      "pos": "v.",
-      "cn": "引用；引述；报价",
-      "tip": "💡回复中引用对方原话用 To quote your email…；商务里也指报价",
-      "example": "To quote your email, we should confirm the budget first.",
-      "exampleCn": "引用您邮件中的话，我们应首先确认预算。",
-      "scene": "周四📧邮件写作"
+      "en": "museum",
+      "phonetic": "/mjuːˈziːəm/",
+      "pos": "n.",
+      "cn": "博物馆",
+      "scene": "周五🎒休闲旅游",
+      "tip": "💡 city trip必逛museum，留意open/closed时间避免扑空。",
+      "example": "We visited the local history museum during the city tour.",
+      "exampleCn": "城市游览时我们参观了当地的历史博物馆。"
     },
     {
-      "en": "state",
-      "phonetic": "/steɪt/",
-      "pos": "v.",
-      "cn": "陈述；声明",
-      "tip": "💡正式邮件「特此说明」用 We would like to state that…，语气清晰",
-      "example": "We would like to state the new policy takes effect next Monday.",
-      "exampleCn": "我们特此说明新政策自下周一起生效。",
-      "scene": "周四📧邮件写作"
+      "en": "temple",
+      "phonetic": "/ˈtempəl/",
+      "pos": "n.",
+      "cn": "庙宇，寺院",
+      "scene": "周五🎒休闲旅游",
+      "tip": "💡 佛山的祖庙就是典型的temple，旅行打卡时很常用。",
+      "example": "They walked up the hill to see the ancient temple.",
+      "exampleCn": "他们走上山去参观那座古老的庙宇。"
     },
     {
-      "en": "express",
-      "phonetic": "/ɪkˈspres/",
-      "pos": "v.",
-      "cn": "表达；表示",
-      "tip": "💡邮件结尾表达感谢/歉意：I'd like to express my appreciation for your support.",
-      "example": "I'd like to express my appreciation for your quick response.",
-      "exampleCn": "我想对您的快速回复表达感谢。",
-      "scene": "周四📧邮件写作"
+      "en": "palace",
+      "phonetic": "/ˈpæləs/",
+      "pos": "n.",
+      "cn": "宫殿",
+      "scene": "周五🎒休闲旅游",
+      "tip": "💡 欧洲city trip常去palace，记得用复数palaces表示宫殿群。",
+      "example": "The summer palace looked amazing under the blue sky.",
+      "exampleCn": "那座夏宫在蓝天映衬下美得惊人。"
     }
   ],
   "qa": {
-    "q": "❓ 为什么广东人一年四季都爱「饮糖水」，双皮奶、姜撞奶凭什么成为标配？",
-    "a": "广东人说的「糖水」不是加糖的白开水，而是用食材慢火熬成的甜羹——红豆沙、绿豆沙、芝麻糊、银耳羹，再到顺德的双皮奶、姜撞奶。它既是饭后甜品，也是「润」的日常：岭南气候湿热，老广相信甜汤能清润降火、补虚养人，于是糖水铺从早开到深夜，成了街坊的「续命站」。顺德双皮奶为何出名？关键在于水牛奶脂肪高、蛋白足，蒸后表面结出两层奶皮，口感细滑醇厚；姜撞奶则靠老姜汁里的蛋白酶遇热牛奶凝固，一碗「撞」出嫩滑，是物理与火候的巧劲。一碗糖水，装的是广东人对「食养」的讲究，也是慢生活里的小确幸。"
+    "q": "❓ 为什么广府人过年总爱「行花街」？年桔、桃花、水仙各有什么讲究？",
+    "a": "行花街（逛迎春花市）是广府地区延续上百年的春节习俗，一般在除夕前三天开市。老广买花不只为好看，更图个好意头：金桔谐音「吉」，摆两盆寓意「大吉大利」；桃花取「红桃」谐音「鸿图」，未婚者还讨个「行桃花运」；水仙因「仙」字带吉祥，且清水养、不沾土，最合广府人「干净利落」的脾性。花街把年味、彩头和生活美学揉在一起，是广府人独有的过年仪式感。"
   },
   "hr": {
-    "topic": "员工离职交接清单怎么列才不留死角",
-    "category": "离职管理",
-    "summary": "离职交接用标准化清单分模块移交，双方签字确认，避免「人走账不清」、客户与资料断层。",
+    "topic": "内推渠道怎么运营",
+    "category": "招聘管理",
+    "summary": "把员工人脉变成稳定招聘渠道，靠制度、奖励和体验三件套持续运转。",
     "steps": [
-      "① 确认最后工作日后当天即下发《离职交接清单》，明确交接起止时间。",
-      "② 按模块拆分：工作事项、文件资料、账号权限、客户关系、在办项目、财物归还。",
-      "③ 指定接手人，逐项当面移交；密码、密钥等敏感信息须双方在场交接。",
-      "④ 接手人核对无误后签字，部门负责人复核，HR 收回门禁与系统权限。",
-      "⑤ 交接单扫描归档备查，并提示离职员工履行保密与竞业限制义务。"
+      "建制度：写明内推范围、岗位清单、奖励标准与发放节点（入职/转正分两笔），避免口头承诺扯皮。",
+      "设阶梯奖励：核心岗、难招岗加码，普通岗基础奖，让推荐人有动力优先推硬骨头。",
+      "包装岗位吸引力：给内推人一份「一句话卖点+真实团队亮点」，方便他转发朋友圈、群聊时不尬。",
+      "定期播报进展：每周在内网/群聊公布「已收内推N份、面试中M人、已入职K人」，形成正向反馈。",
+      "闭环反馈：无论录用与否，3个工作日内给推荐人回音，体验好才会持续推人。"
     ],
-    "example": "交接清单字段参考：序号｜交接内容｜载体/位置（系统名、文件夹、账号）｜接手人｜完成确认（签字+日期）。关键客户须附近期跟进记录与下一步动作。",
-    "tip": "💡易踩坑：只交文件不交「坑点」——务必让离职人写出在办项目的卡点与待决策事项，否则接手人接的是「半成品」。"
+    "example": "内推奖励模板：「内推成功入职奖800元，转正再奖1200元；算法/嵌入式等紧缺岗翻倍。推荐入口：HR系统-内推专区，简历备注『内推-姓名』即可。」",
+    "tip": "💡 内推不是发个公告就完事，关键是「推荐人体验」——回音慢、说不清奖多少，员工下次就不推了。"
   },
   "movie": null
 }
